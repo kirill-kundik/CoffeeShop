@@ -1,7 +1,7 @@
 var coffee_info = [
     {
         id: 1,
-        icon: 'assets/images/kapuchino.png',
+        icon: 'www/assets/images/kapuchino.png',
         title: "Капучіно",
         type: 'Кава',
 
@@ -16,8 +16,8 @@ var coffee_info = [
     },
     {
         id: 2,
-        icon: 'assets/images/kapuchino.png',
-        title: "Американо",
+        icon: 'www/assets/images/americano.png',
+        title: "Амерікано",
         type: 'Кава',
 
         middle_size: {
@@ -31,8 +31,23 @@ var coffee_info = [
     },
     {
         id: 3,
-        icon: 'assets/images/kapuchino.png',
+        icon: 'www/assets/images/latte.png',
         title: "Латте",
+        type: 'Кава',
+
+        middle_size: {
+            volume: 250,
+            price: 19
+        },
+        big_size: {
+            volume: 500,
+            price: 25
+        }
+    },
+    {
+        id: 4,
+        icon: 'www/assets/images/espresso.png',
+        title: "Еспрессо",
         type: 'Кава',
 
         middle_size: {

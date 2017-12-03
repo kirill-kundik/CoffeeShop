@@ -31,8 +31,10 @@
             width: 100%;
             height: 300px;
 
+            transition: all @animationDuration ease;
             background-color: @colorWindowBackground;
-            top: 0;
+
+            transform: translateY(40px);
          }
 
          .black-background {
@@ -61,8 +63,8 @@
 
          .items-kinds {
             transition: all @animationDuration ease;
-            opacity: 0;
 
+            opacity: 0;
             position: absolute;
             top: 80px;
 
@@ -106,13 +108,15 @@
          transition: all @animationDuration ease;
          transform: translateY(-120px);
 
+         .info-background {
+            transform: translateY(0);
+         }
+
          .black-background {
-            transition: all @animationDuration ease;
             background-color: rgba(0, 0, 0, 0.4);
          }
 
          .items-kinds {
-            transition: all @animationDuration ease;
             opacity: 1;
          }
       }

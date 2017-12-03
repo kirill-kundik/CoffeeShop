@@ -1,0 +1,30 @@
+<div class="outer col-lg-4 col-sm-6 col-xs-12">
+    <div class="menu-item">
+        <img class="item-image" src=<%= item.icon %>>
+        <div class="info">
+            <div class="black-background"></div>
+            <div class="info-background"></div>
+            <div class="title"><%= item.title %></div>
+
+            <div class="items-kinds">
+                <% if('middle_size' in item) { %>
+                <div class="category">
+                    <div class="size">Середній:</div>
+                    <div class="price"><%= item.middle_size.price %> грн</div>
+                    <a class="btn btn-default add-big">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </a>
+                </div>
+                <% } if('big_size' in item) { %>
+                <div class="category">
+                    <div class="size">Великий:</div>
+                    <div class="price"><%= item.big_size.price %> грн</div>
+                    <a class="btn btn-default add-middle">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </a>
+                </div>
+                <% } %>
+            </div>
+        </div>
+    </div>
+</div>

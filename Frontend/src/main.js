@@ -1,9 +1,9 @@
 $(function(){
     //This code will execute when the page is ready
-    var CoffeeMenu = require('./pizza/PizzaMenu');
+    var CoffeeMenu = require('./menu/CoffeeMenu');
     //var CoffeeCart = require('./pizza/PizzaCart');
-    var Coffee_List = require('./Coffee_List');
-    //var PizzaOrderPage = require('./pizza/PizzaOrderPage');
+    // var Coffee_List = require('./Coffee_List');
+    // var PizzaOrderPage = require('./pizza/PizzaOrderPage');
 
     //PizzaCart.initialiseCart();
     CoffeeMenu.initialiseMenu();
