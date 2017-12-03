@@ -3,9 +3,12 @@
 @colorMainBackground: #fffef6;
 @colorBrown: #2d2624;
 @colorWindowBackground: #f0efeb;
-@colorTextLight: #e1dfd4;
+@colorTextLight: #eeece1;
+@animationDuration: 0.4s;
 
-@import "coffee/header";
+@import "main/header";
+@import "menu/menu_page";
+@import "menu/menu_item";
 
 html {
    height: 100%;
@@ -13,5 +16,38 @@ html {
 
    body {
       background-color: @colorMainBackground;
+      font-family: 'Arial', sans-serif;
+
+      .btn {
+         color: @colorTextLight;
+         background-color: @colorBrown;
+         border: 0;
+
+         font-size: 17px;
+         font-weight: 500;
+
+         border-radius: 0;
+      }
+
+      .btn:hover {
+         background-color: #4d4234;
+         color: @colorTextLight;
+         border: 0;
+      }
+
+      .btn:link {
+         color: @colorTextLight;
+         border: 0;
+      }
+
+      .btn:visited {
+         color: @colorTextLight;
+         border: 0;
+      }
+
+      .btn:active {
+         color: @colorTextLight;
+         border: 0;
+      }
    }
 }
