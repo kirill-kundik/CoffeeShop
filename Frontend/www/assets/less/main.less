@@ -9,6 +9,7 @@
 @colorBorder: #afaeaa;
 
 @import "main/header";
+@import "main/footer";
 @import "menu/menu_page";
 @import "menu/menu_item";
 
@@ -19,6 +20,10 @@ html {
    body {
       background-color: @colorMainBackground;
       font-family: 'Arial', sans-serif;
+
+      position: relative;
+      padding-bottom: 10rem;
+      min-height: 100%;
 
       .btn {
          color: @colorTextLight;
