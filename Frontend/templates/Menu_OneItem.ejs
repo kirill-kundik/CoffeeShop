@@ -7,7 +7,15 @@
             <div class="title"><%= item.title %></div>
 
             <div class="items-kinds">
-                <% if('middle_size' in item) { %>
+                <% if('small_size' in item) { %>
+                <div class="category">
+                    <div class="size">Маленький:</div>
+                    <div class="price"><%= item.small_size.price %> грн</div>
+                    <a class="btn btn-default add-big">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </a>
+                </div>
+                <% } if('middle_size' in item) { %>
                 <div class="category">
                     <div class="size">Середній:</div>
                     <div class="price"><%= item.middle_size.price %> грн</div>

@@ -50,12 +50,12 @@ var coffee_info = [
         title: "Еспрессо",
         type: 'Кава',
 
-        middle_size: {
-            volume: 250,
+        small_size: {
+            volume: 100,
             price: 19
         },
-        big_size: {
-            volume: 500,
+        middle_size: {
+            volume: 150,
             price: 25
         }
     }
