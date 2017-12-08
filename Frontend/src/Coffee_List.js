@@ -58,6 +58,20 @@ var coffee_info = [
             volume: 150,
             price: 25
         }
+    }, {
+        id: 5,
+        icon: 'www/assets/images/chay1.png',
+        title: "Чай",
+        type: 'Чай',
+
+        small_size: {
+            volume: 100,
+            price: 19
+        },
+        middle_size: {
+            volume: 150,
+            price: 25
+        }
     }
 ];
 

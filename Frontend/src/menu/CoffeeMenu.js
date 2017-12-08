@@ -2,7 +2,7 @@
  * Created by chaika on 02.02.16.
  */
 var Templates = require('../Templates');
-//var PizzaCart = require('./PizzaCart');
+var CoffeeCart = require('./CoffeeCart');
 var Items_List = require('../Coffee_List');
 
 // var api = require('../API');
@@ -22,10 +22,13 @@ function showList(list) {
         var $node = $(html_code);
 
         $node.find(".add-big").click(function () {
-            //PizzaCart.addToCart(item, PizzaCart.PizzaSize.Big);
+            CoffeeCart.addToCart(item, CoffeeCart.sizes.Big);
         });
         $node.find(".add-middle").click(function () {
-            //PizzaCart.addToCart(item, PizzaCart.PizzaSize.Middle);
+            CoffeeCart.addToCart(item, CoffeeCart.sizes.Middle);
+        });
+        $node.find(".add-small").click(function () {
+            CoffeeCart.addToCart(item, CoffeeCart.sizes.Middle);
         });
 
         $items_list.append($node);

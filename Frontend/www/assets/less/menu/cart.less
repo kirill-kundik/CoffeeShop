@@ -1,0 +1,169 @@
+@cartHeight: 250px;
+@cartItemHeight: 100px;
+@cartFooterHeight: 50px;
+
+#cart_header {
+   z-index: 15;
+   position: relative;
+   display: none;
+
+   top: 75px;
+   float: right;
+   transform: translateX(50px);
+
+   width: 450px;
+   height: @cartHeight;
+
+   background-color: @colorWindowBackground;
+   box-shadow: 0 0 15px rgba(0, 0, 0, .25);
+
+   border: 1px solid @colorBorder;
+
+   .sum {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      border-top: 1px solid @colorBrown;
+      background-color: rgba(51, 43, 41, 0.13);
+      height: @cartFooterHeight;
+
+      .sum-text {
+         position: absolute;
+         top: 50%;
+         transform: translateY(-50%);
+         padding-left: 20px;
+
+         font-size: 21px;
+      }
+
+      .sum-text:before {
+         content: "Разом: ";
+      }
+
+      .sum-text:after {
+         content: " грн";
+      }
+
+      .btn {
+         position: absolute;
+         top: 50%;
+         transform: translateY(-50%);
+         right: 20px;
+
+         font-size: 18px;
+
+         padding: 4px 30px 4px 30px;
+      }
+   }
+
+   .arrow-up {
+      position: absolute;
+      top: -15px;
+      right: 17px;
+
+      width: 0;
+      height: 0;
+      border-left: 15px solid transparent;
+      border-right: 15px solid transparent;
+      border-bottom: 15px solid @colorWindowBackground;
+   }
+   .arrow-black {
+      transform: translateX(2px);
+      border-left: 17px solid transparent;
+      border-right: 17px solid transparent;
+      border-bottom: 15px solid @colorBorder;
+   }
+
+   #header-cart-list {
+      overflow-y: scroll;
+      height: @cartHeight - @cartFooterHeight;
+
+      .label-empty {
+         position: relative;
+         text-align: center;
+         font-size: 17px;
+         top: 50%;
+      }
+
+      .cart-item {
+         display: inline-block;
+         //border-top: 1px solid @colorBrown;
+         border-bottom: 1px solid @colorBrown;
+         padding: 0;
+         height: @cartItemHeight;
+         width: 100%;
+
+         .image-column {
+            padding: 5px 15px 5px 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            .cart-img {
+               max-width: @cartItemHeight * 0.9;
+            }
+         }
+
+         .info-column {
+            padding: 10px 0 10px 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            .item-title {
+               font-size: 23px;
+               font-weight: 500;
+            }
+
+            .price {
+               font-size: 17px;
+               font-weight: 500;
+            }
+            .price::before {
+               content: "• ";
+            }
+
+            .volume {
+               font-size: 17px;
+               font-weight: 500;
+            }
+            .volume::before {
+               content: "• ";
+            }
+         }
+
+         .count-column {
+            padding: 0;
+            text-align: center;
+
+            top: 50%;
+            transform: translateY(-50%);
+
+            .amount {
+               font-size: 21px;
+               font-weight: 500;
+            }
+            .amount::before {
+               content: "x";
+            }
+
+            .change-amount {
+               display: inline;
+
+               font-size: 20px;
+               font-weight: 500;
+               color: @colorBrown;
+
+               transition: all 0.1s ease;
+            }
+
+            .change-amount:hover {
+               cursor: pointer;
+               color: #988989;
+            }
+
+            .change-amount:active {
+               color: #5e5454;
+            }
+         }
+      }
+   }
+
+}
