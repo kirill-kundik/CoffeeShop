@@ -1,9 +1,7 @@
-/**
- * Created by chaika on 02.02.16.
- */
 var Templates = require('../Templates');
 var CoffeeCart = require('./CoffeeCart');
 var Items_List = require('../Coffee_List');
+var popup = require('../popup');
 
 // var api = require('../API');
 //var Items_List;
@@ -23,12 +21,15 @@ function showList(list) {
 
         $node.find(".add-big").click(function () {
             CoffeeCart.addToCart(item, CoffeeCart.sizes.Big);
+            popup.new_popup(item.title + " великий");
         });
         $node.find(".add-middle").click(function () {
             CoffeeCart.addToCart(item, CoffeeCart.sizes.Middle);
+            popup.new_popup(item.title + " середній");
         });
         $node.find(".add-small").click(function () {
-            CoffeeCart.addToCart(item, CoffeeCart.sizes.Middle);
+            CoffeeCart.addToCart(item, CoffeeCart.sizes.Small);
+            popup.new_popup(item.title + " маленький");
         });
 
         $items_list.append($node);
@@ -81,7 +82,7 @@ function initialiseMenu() {
         filter(['Чай'],[]);
     });
     $('#type4').click(function () {
-        filter([], ['Кава', 'Чай']);
+        filter([], ['Кава', 'Чай', 'Солодке']);
     });
     $('#type5').click(function () {
         filter(['Солодке'], []);

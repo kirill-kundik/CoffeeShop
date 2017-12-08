@@ -6,7 +6,7 @@
     <div class="col-xs-4 info-column">
         <div class="item-title"><%= item.title %></div>
         <div class="price"><%= item[size].price %> грн</div>
-        <div class="volume"><%= item[size].volume %> мл</div>
+        <div class="volume"><%= item[size].volume %> <%= item.notLiquid ? " г" : " мл" %> </div>
     </div>
 
     <div class="col-xs-4 count-column">

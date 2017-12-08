@@ -44,43 +44,17 @@
 
         <div id="cart_header">
             <div class="arrow-up arrow-black"></div>
-            <div class="arrow-up"></div>
+            <div class="background">
+                <div class="arrow-up"></div>
 
-            <div id="header-cart-list">
-                <div class="cart-item container-fluid">
-                    <div class="col-xs-4 image-column">
-                        <img class="cart-img" src="www/assets/images/americano.png">
-                    </div>
+                <div id="header-cart-list"></div>
 
-                    <div class="col-xs-4 info-column">
-                        <div class="item-title">
-                            Americano
-                        </div>
-                        <div class="price">
-                            55 uah
-                        </div>
-                        <div class="volume">
-                            300 ml
-                        </div>
+                <div class="sum">
+                    <div class="sum-text">
+                        Разом: 228 грн
                     </div>
-
-                    <div class="col-xs-4 count-column">
-                        <div class="plus-amount change-amount">
-                            <span class="glyphicon glyphicon-chevron-up"></span>
-                        </div>
-                        <div class="amount">1</div>
-                        <div class="minus-amount change-amount">
-                            <span class="glyphicon glyphicon-chevron-down"></span>
-                        </div>
-                    </div>
+                    <a class="btn btn-default make-order">Замовити</a>
                 </div>
-            </div>
-
-            <div class="sum">
-                <div class="sum-text">
-                    Разом: 228 грн
-                </div>
-                <a class="btn btn-default make-order">Замовити</a>
             </div>
         </div>
     </div>
@@ -126,6 +100,8 @@
 
     </div>
 </footer>
+
+<div id="popups"></div>
 
 <!-- jQuery JavaScript -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>

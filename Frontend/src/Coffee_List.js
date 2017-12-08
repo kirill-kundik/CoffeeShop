@@ -72,7 +72,33 @@ var coffee_info = [
             volume: 150,
             price: 25
         }
+    }, {
+        id: 6,
+        icon: 'www/assets/images/glintveyn.png',
+        title: "Глінтвейн",
+        type: 'Глінтвейн',
+
+        small_size: {
+            volume: 200,
+            price: 19
+        },
+        middle_size: {
+            volume: 450,
+            price: 25
+        }
+    },{
+        id: 7,
+        icon: 'www/assets/images/sahar.png',
+        title: "Цукор",
+        type: 'Солодке',
+
+        small_size: {
+            volume: 200,
+            price: 10
+        },
+        notLiquid: true
     }
+
 ];
 
 module.exports = coffee_info;

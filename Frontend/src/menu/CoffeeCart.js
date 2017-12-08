@@ -6,6 +6,8 @@ var Templates = require('../Templates');
 var cart_key = "cart_key";
 var storage = require("../storage");
 
+var popup = require('../popup');
+
 var sizes = {
     Big: "big_size",
     Middle: "middle_size",
@@ -23,7 +25,7 @@ function addToCart(item, size) {
     var added = false;
     Cart.forEach(function (cart_item) {
         if (!added) {
-            if (cart_item.item === item && cart_item.size === size) {
+            if (cart_item.item.title === item.title && cart_item.size === size) {
                 cart_item.quantity += 1;
                 added = true;
             }
@@ -66,10 +68,10 @@ function updateCart() {
         //cart_item.is_editable = !window.location.href.contains("order.html");
 
         var html_code = Templates.Cart_OneItem(cart_item);
-
         var $node = $(html_code);
 
         $node.find(".plus-amount").click(function () {
+            // popup.new_popup();
             cart_item.quantity += 1;
             updateCart();
         });
@@ -88,13 +90,13 @@ function updateCart() {
     $footer_cart.find(".sum-text").text(getSum());
 
     var $order_btn = $footer_cart.find(".make-order");
-    if(Cart.length > 0) {
-        if($order_btn.hasClass('disabled')) {
+    if (Cart.length > 0) {
+        if ($order_btn.hasClass('disabled')) {
             $order_btn.removeClass("disabled").attr("rel", null);
         }
-    } else{
+    } else {
         $cart.append('<div class="label-empty">Кошик пустий</div>');
-        if(!$order_btn.hasClass('disabled')) {
+        if (!$order_btn.hasClass('disabled')) {
             $order_btn.addClass("disabled").attr("rel", "tooltip");
         }
     }

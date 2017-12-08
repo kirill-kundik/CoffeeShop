@@ -5,6 +5,7 @@ $(function(){
     // var Coffee_List = require('./Coffee_List');
     // var PizzaOrderPage = require('./pizza/PizzaOrderPage');
     var cart = require('./Cart');
+    // var popup = require('./popup');
 
     CoffeeCart.initialiseCart();
     CoffeeMenu.initialiseMenu();
@@ -14,5 +15,9 @@ $(function(){
     // if(window.location.href.contains('order')) {
     //     PizzaOrderPage.initializeOrderPage();
     // }
+
+
+    var testScrolling = require('./testScrolling');
+    testScrolling.init();
 
 });

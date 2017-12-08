@@ -105,22 +105,46 @@ var coffee_info = [
             volume: 150,
             price: 25
         }
+    }, {
+        id: 6,
+        icon: 'www/assets/images/glintveyn.png',
+        title: "Глінтвейн",
+        type: 'Глінтвейн',
+
+        small_size: {
+            volume: 200,
+            price: 19
+        },
+        middle_size: {
+            volume: 450,
+            price: 25
+        }
+    },{
+        id: 7,
+        icon: 'www/assets/images/sahar.png',
+        title: "Цукор",
+        type: 'Солодке',
+
+        small_size: {
+            volume: 200,
+            price: 10
+        },
+        notLiquid: true
     }
+
 ];
 
 module.exports = coffee_info;
 },{}],3:[function(require,module,exports){
-/**
- * Created by chaika on 02.02.16.
- */
 
 var ejs = require('ejs');
 
 
-exports.Menu_OneItem = ejs.compile("<div class=\"outer col-lg-4 col-sm-6 col-xs-12\">\r\n    <div class=\"menu-item\">\r\n        <img class=\"item-image\" src=<%= item.icon %>>\r\n        <div class=\"info\">\r\n            <div class=\"black-background\"></div>\r\n            <div class=\"info-background\"></div>\r\n            <div class=\"title\"><%= item.title %></div>\r\n\r\n            <div class=\"items-kinds\">\r\n                <% if('small_size' in item) { %>\r\n                <div class=\"category\">\r\n                    <div class=\"size\">\r\n                        Маленький:\r\n                        <div class=\"volume\"><%= item.small_size.volume %> мл</div>\r\n                    </div>\r\n                    <div class=\"price\"><%= item.small_size.price %> грн</div>\r\n                    <a class=\"btn btn-default add-small\">\r\n                        <span class=\"glyphicon glyphicon-plus\"></span>\r\n                    </a>\r\n                </div>\r\n                <% } if('middle_size' in item) { %>\r\n                <div class=\"category\">\r\n                    <div class=\"size\">\r\n                        Середній:\r\n                        <div class=\"volume\"><%= item.middle_size.volume %> мл</div>\r\n                    </div>\r\n                    <div class=\"price\"><%= item.middle_size.price %> грн</div>\r\n                    <a class=\"btn btn-default add-middle\">\r\n                        <span class=\"glyphicon glyphicon-plus\"></span>\r\n                    </a>\r\n                </div>\r\n                <% } if('big_size' in item) { %>\r\n                <div class=\"category\">\r\n                    <div class=\"size\">\r\n                        Великий:\r\n                        <div class=\"volume\"><%= item.big_size.volume %> мл</div>\r\n                    </div>\r\n                    <div class=\"price\"><%= item.big_size.price %> грн</div>\r\n                    <a class=\"btn btn-default add-big\">\r\n                        <span class=\"glyphicon glyphicon-plus\"></span>\r\n                    </a>\r\n                </div>\r\n                <% } %>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>");
-exports.Cart_OneItem = ejs.compile("<div class=\"cart-item container-fluid\">\r\n    <div class=\"col-xs-4 image-column\">\r\n        <img class=\"cart-img\" src=<%= item.icon %> >\r\n    </div>\r\n\r\n    <div class=\"col-xs-4 info-column\">\r\n        <div class=\"item-title\"><%= item.title %></div>\r\n        <div class=\"price\"><%= item[size].price %> грн</div>\r\n        <div class=\"volume\"><%= item[size].volume %> мл</div>\r\n    </div>\r\n\r\n    <div class=\"col-xs-4 count-column\">\r\n        <div class=\"plus-amount change-amount\">\r\n            <span class=\"glyphicon glyphicon-chevron-up\"></span>\r\n        </div>\r\n        <div class=\"amount\"><%= quantity %></div>\r\n        <div class=\"minus-amount change-amount\">\r\n            <span class=\"glyphicon glyphicon-chevron-down\"></span>\r\n        </div>\r\n    </div>\r\n</div>");
+exports.Menu_OneItem = ejs.compile("<div class=\"outer col-lg-4 col-sm-6 col-xs-12\">\r\n    <div class=\"menu-item\">\r\n        <img class=\"item-image\" src=<%= item.icon %>>\r\n        <div class=\"info\">\r\n            <div class=\"black-background\"></div>\r\n            <div class=\"info-background\"></div>\r\n            <div class=\"title\"><%= item.title %></div>\r\n\r\n            <div class=\"items-kinds\">\r\n                <% if('small_size' in item) { %>\r\n                <div class=\"category\">\r\n                    <div class=\"size\">\r\n                        Маленький:\r\n                        <div class=\"volume\"><%= item.small_size.volume %>\r\n                            <%= item.notLiquid ? \" г\" : \" мл\" %></div>\r\n                    </div>\r\n                    <div class=\"price\"><%= item.small_size.price %> грн</div>\r\n                    <a class=\"btn btn-default add-small\">\r\n                        <span class=\"glyphicon glyphicon-plus\"></span>\r\n                    </a>\r\n                </div>\r\n                <% } if('middle_size' in item) { %>\r\n                <div class=\"category\">\r\n                    <div class=\"size\">\r\n                        Середній:\r\n                        <div class=\"volume\"><%= item.middle_size.volume %>\r\n                            <%= item.notLiquid ? \" г\" : \" мл\" %></div>\r\n                    </div>\r\n                    <div class=\"price\"><%= item.middle_size.price %> грн</div>\r\n                    <a class=\"btn btn-default add-middle\">\r\n                        <span class=\"glyphicon glyphicon-plus\"></span>\r\n                    </a>\r\n                </div>\r\n                <% } if('big_size' in item) { %>\r\n                <div class=\"category\">\r\n                    <div class=\"size\">\r\n                        Великий:\r\n                        <div class=\"volume\"><%= item.big_size.volume %>\r\n                            <%= item.notLiquid ? \" г\" : \" мл\" %></div>\r\n                    </div>\r\n                    <div class=\"price\"><%= item.big_size.price %> грн</div>\r\n                    <a class=\"btn btn-default add-big\">\r\n                        <span class=\"glyphicon glyphicon-plus\"></span>\r\n                    </a>\r\n                </div>\r\n                <% } %>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>");
+exports.Cart_OneItem = ejs.compile("<div class=\"cart-item container-fluid\">\r\n    <div class=\"col-xs-4 image-column\">\r\n        <img class=\"cart-img\" src=<%= item.icon %> >\r\n    </div>\r\n\r\n    <div class=\"col-xs-4 info-column\">\r\n        <div class=\"item-title\"><%= item.title %></div>\r\n        <div class=\"price\"><%= item[size].price %> грн</div>\r\n        <div class=\"volume\"><%= item[size].volume %> <%= item.notLiquid ? \" г\" : \" мл\" %> </div>\r\n    </div>\r\n\r\n    <div class=\"col-xs-4 count-column\">\r\n        <div class=\"plus-amount change-amount\">\r\n            <span class=\"glyphicon glyphicon-chevron-up\"></span>\r\n        </div>\r\n        <div class=\"amount\"><%= quantity %></div>\r\n        <div class=\"minus-amount change-amount\">\r\n            <span class=\"glyphicon glyphicon-chevron-down\"></span>\r\n        </div>\r\n    </div>\r\n</div>");
+exports.popup = ejs.compile("<div class=\"popup-message\">\r\n    <img class=\"icon\" src=\"www/assets/images/cart.png\">\r\n    <div class=\"text\"> <%= str %> </div>\r\n</div>");
 
-},{"ejs":10}],4:[function(require,module,exports){
+},{"ejs":12}],4:[function(require,module,exports){
 $(function(){
     //This code will execute when the page is ready
     var CoffeeMenu = require('./menu/CoffeeMenu');
@@ -128,6 +152,7 @@ $(function(){
     // var Coffee_List = require('./Coffee_List');
     // var PizzaOrderPage = require('./pizza/PizzaOrderPage');
     var cart = require('./Cart');
+    // var popup = require('./popup');
 
     CoffeeCart.initialiseCart();
     CoffeeMenu.initialiseMenu();
@@ -138,8 +163,13 @@ $(function(){
     //     PizzaOrderPage.initializeOrderPage();
     // }
 
+
+    var testScrolling = require('./testScrolling');
+    testScrolling.init();
+
 });
-},{"./Cart":1,"./menu/CoffeeCart":5,"./menu/CoffeeMenu":6}],5:[function(require,module,exports){
+
+},{"./Cart":1,"./menu/CoffeeCart":5,"./menu/CoffeeMenu":6,"./testScrolling":9}],5:[function(require,module,exports){
 String.prototype.contains = function (substring) {
     return this.toLowerCase().indexOf(substring.toLowerCase()) !== -1;
 };
@@ -147,6 +177,8 @@ String.prototype.contains = function (substring) {
 var Templates = require('../Templates');
 var cart_key = "cart_key";
 var storage = require("../storage");
+
+var popup = require('../popup');
 
 var sizes = {
     Big: "big_size",
@@ -165,7 +197,7 @@ function addToCart(item, size) {
     var added = false;
     Cart.forEach(function (cart_item) {
         if (!added) {
-            if (cart_item.item === item && cart_item.size === size) {
+            if (cart_item.item.title === item.title && cart_item.size === size) {
                 cart_item.quantity += 1;
                 added = true;
             }
@@ -208,10 +240,10 @@ function updateCart() {
         //cart_item.is_editable = !window.location.href.contains("order.html");
 
         var html_code = Templates.Cart_OneItem(cart_item);
-
         var $node = $(html_code);
 
         $node.find(".plus-amount").click(function () {
+            // popup.new_popup();
             cart_item.quantity += 1;
             updateCart();
         });
@@ -230,13 +262,13 @@ function updateCart() {
     $footer_cart.find(".sum-text").text(getSum());
 
     var $order_btn = $footer_cart.find(".make-order");
-    if(Cart.length > 0) {
-        if($order_btn.hasClass('disabled')) {
+    if (Cart.length > 0) {
+        if ($order_btn.hasClass('disabled')) {
             $order_btn.removeClass("disabled").attr("rel", null);
         }
-    } else{
+    } else {
         $cart.append('<div class="label-empty">Кошик пустий</div>');
-        if(!$order_btn.hasClass('disabled')) {
+        if (!$order_btn.hasClass('disabled')) {
             $order_btn.addClass("disabled").attr("rel", "tooltip");
         }
     }
@@ -263,13 +295,11 @@ exports.initialiseCart = initialiseCart;
 exports.sizes = sizes;
 
 exports.getSum = getSum;
-},{"../Templates":3,"../storage":7}],6:[function(require,module,exports){
-/**
- * Created by chaika on 02.02.16.
- */
+},{"../Templates":3,"../popup":7,"../storage":8}],6:[function(require,module,exports){
 var Templates = require('../Templates');
 var CoffeeCart = require('./CoffeeCart');
 var Items_List = require('../Coffee_List');
+var popup = require('../popup');
 
 // var api = require('../API');
 //var Items_List;
@@ -289,12 +319,15 @@ function showList(list) {
 
         $node.find(".add-big").click(function () {
             CoffeeCart.addToCart(item, CoffeeCart.sizes.Big);
+            popup.new_popup(item.title + " великий");
         });
         $node.find(".add-middle").click(function () {
             CoffeeCart.addToCart(item, CoffeeCart.sizes.Middle);
+            popup.new_popup(item.title + " середній");
         });
         $node.find(".add-small").click(function () {
-            CoffeeCart.addToCart(item, CoffeeCart.sizes.Middle);
+            CoffeeCart.addToCart(item, CoffeeCart.sizes.Small);
+            popup.new_popup(item.title + " маленький");
         });
 
         $items_list.append($node);
@@ -347,7 +380,7 @@ function initialiseMenu() {
         filter(['Чай'],[]);
     });
     $('#type4').click(function () {
-        filter([], ['Кава', 'Чай']);
+        filter([], ['Кава', 'Чай', 'Солодке']);
     });
     $('#type5').click(function () {
         filter(['Солодке'], []);
@@ -356,7 +389,27 @@ function initialiseMenu() {
 
 exports.filterPizza = filter;
 exports.initialiseMenu = initialiseMenu;
-},{"../Coffee_List":2,"../Templates":3,"./CoffeeCart":5}],7:[function(require,module,exports){
+},{"../Coffee_List":2,"../Templates":3,"../popup":7,"./CoffeeCart":5}],7:[function(require,module,exports){
+var Templates = require('./Templates');
+var $parent = $("#popups");
+
+function new_popup(str) {
+    var html_code = Templates.popup({str: str});
+    var $node = $(html_code);
+
+    $parent.append($node);
+    $node.fadeIn("fast");
+    $node.addClass('slide-up');
+    setTimeout(function () {
+        $node.removeClass('slide-up');
+        $node.fadeOut("fast", function () {
+            $node.remove();
+        });
+    }, 2000);
+}
+
+exports.new_popup = new_popup;
+},{"./Templates":3}],8:[function(require,module,exports){
 var basil = require('basil.js');
 var storage = new basil();
 
@@ -367,7 +420,40 @@ exports.get = function (key) {
 exports.set = function (key, value) {
     return storage.set(key, value);
 }
-},{"basil.js":8}],8:[function(require,module,exports){
+},{"basil.js":10}],9:[function(require,module,exports){
+var $animation_elements = $('.animation-element');
+var $window = $(window);
+
+function check_if_in_view() {
+    var window_height = $window.height();
+    var window_top_position = $window.scrollTop();
+    var window_bottom_position = (window_top_position + window_height);
+
+    $.each($animation_elements, function() {
+        var $element = $(this);
+        var element_height = $element.outerHeight();
+        var element_top_position = $element.offset().top;
+        var element_bottom_position = (element_top_position + element_height);
+
+        //check to see if this current container is within viewport
+        if ((element_bottom_position >= window_top_position) &&
+            (element_top_position <= window_bottom_position)) {
+            $element.addClass('in-view');
+        } else {
+            $element.removeClass('in-view');
+        }
+    });
+}
+
+function init() {
+    $window.on('scroll resize', check_if_in_view);
+    $window.trigger('scroll');
+
+    //alert("test");
+}
+
+exports.init = init;
+},{}],10:[function(require,module,exports){
 (function () {
 	// Basil
 	var Basil = function (options) {
@@ -755,9 +841,9 @@ exports.set = function (key, value) {
 
 })();
 
-},{}],9:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 
-},{}],10:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 /*
  * EJS Embedded JavaScript templates
  * Copyright 2112 Matthew Eernisse (mde@fleegix.org)
@@ -1625,7 +1711,7 @@ if (typeof window != 'undefined') {
   window.ejs = exports;
 }
 
-},{"../package.json":12,"./utils":11,"fs":9,"path":13}],11:[function(require,module,exports){
+},{"../package.json":14,"./utils":13,"fs":11,"path":15}],13:[function(require,module,exports){
 /*
  * EJS Embedded JavaScript templates
  * Copyright 2112 Matthew Eernisse (mde@fleegix.org)
@@ -1791,7 +1877,7 @@ exports.cache = {
   }
 };
 
-},{}],12:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
 module.exports={
   "_from": "ejs@^2.4.1",
   "_id": "ejs@2.5.7",
@@ -1872,7 +1958,7 @@ module.exports={
   "version": "2.5.7"
 }
 
-},{}],13:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
 (function (process){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -2100,7 +2186,7 @@ var substr = 'ab'.substr(-1) === 'b'
 ;
 
 }).call(this,require('_process'))
-},{"_process":14}],14:[function(require,module,exports){
+},{"_process":16}],16:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 

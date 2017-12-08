@@ -11,7 +11,8 @@
                 <div class="category">
                     <div class="size">
                         Маленький:
-                        <div class="volume"><%= item.small_size.volume %> мл</div>
+                        <div class="volume"><%= item.small_size.volume %>
+                            <%= item.notLiquid ? " г" : " мл" %></div>
                     </div>
                     <div class="price"><%= item.small_size.price %> грн</div>
                     <a class="btn btn-default add-small">
@@ -22,7 +23,8 @@
                 <div class="category">
                     <div class="size">
                         Середній:
-                        <div class="volume"><%= item.middle_size.volume %> мл</div>
+                        <div class="volume"><%= item.middle_size.volume %>
+                            <%= item.notLiquid ? " г" : " мл" %></div>
                     </div>
                     <div class="price"><%= item.middle_size.price %> грн</div>
                     <a class="btn btn-default add-middle">
@@ -33,7 +35,8 @@
                 <div class="category">
                     <div class="size">
                         Великий:
-                        <div class="volume"><%= item.big_size.volume %> мл</div>
+                        <div class="volume"><%= item.big_size.volume %>
+                            <%= item.notLiquid ? " г" : " мл" %></div>
                     </div>
                     <div class="price"><%= item.big_size.price %> грн</div>
                     <a class="btn btn-default add-big">
