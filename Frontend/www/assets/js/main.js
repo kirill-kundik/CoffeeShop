@@ -178,7 +178,7 @@ var Templates = require('../Templates');
 var cart_key = "cart_key";
 var storage = require("../storage");
 
-var popup = require('../popup');
+var $counter = $(".items-count");
 
 var sizes = {
     Big: "big_size",
@@ -276,6 +276,18 @@ function updateCart() {
 
     Cart.forEach(showOneItemInCart);
     storage.set(cart_key, Cart);
+    setCounter();
+}
+
+function setCounter() {
+    var count = 0;
+    Cart.forEach(function (t) { count += t.quantity; });
+    if(count > 0) {
+        $counter.show();
+    } else {
+        $counter.hide();
+    }
+    $counter.text(count);
 }
 
 function getSum() {
@@ -295,7 +307,7 @@ exports.initialiseCart = initialiseCart;
 exports.sizes = sizes;
 
 exports.getSum = getSum;
-},{"../Templates":3,"../popup":7,"../storage":8}],6:[function(require,module,exports){
+},{"../Templates":3,"../storage":8}],6:[function(require,module,exports){
 var Templates = require('../Templates');
 var CoffeeCart = require('./CoffeeCart');
 var Items_List = require('../Coffee_List');

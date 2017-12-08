@@ -61,17 +61,35 @@
          .cart-img {
             max-width: 40px;
          }
+
+         .items-count {
+            background: #ee0000;
+            color: white;
+            border-radius: 1rem;
+            font-size: 15px;
+
+            position: absolute;
+            text-align: center;
+            top: -2px;
+            right: -5px;
+
+            padding: 0 6px 0 6px;
+         }
       }
    }
 }
 
 .cart-button:hover {
    cursor: pointer;
-   opacity: 0.8;
+   .cart-img {
+      opacity: 0.8;
+   }
 }
 
 .cart-button:active {
-   opacity: 0.5;
+   .cart-img {
+      opacity: 0.5;
+   }
 }
 
 a.link-header {
