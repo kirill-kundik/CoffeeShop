@@ -1,0 +1,21 @@
+<div class="cart-item container-fluid">
+    <div class="col-xs-4 image-column">
+        <img class="cart-img" src=<%= item.icon %> >
+    </div>
+
+    <div class="col-xs-4 info-column">
+        <div class="item-title"><%= item.title %></div>
+        <div class="price"><%= item[size].price %> грн</div>
+        <div class="volume"><%= item[size].volume %> <%= item.notLiquid ? " г" : " мл" %> </div>
+    </div>
+
+    <div class="col-xs-4 count-column">
+        <div class="plus-amount change-amount">
+            <span class="glyphicon glyphicon-chevron-up"></span>
+        </div>
+        <div class="amount"><%= quantity %></div>
+        <div class="minus-amount change-amount">
+            <span class="glyphicon glyphicon-chevron-down"></span>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,39 @@
+.popup-message {
+   position: fixed;
+   width: 300px;
+   height: 40px;
+   bottom: -50px;
+   left: 20px;
+   z-index: 20;
+
+   background-color: rgb(17, 12, 12);
+
+   transform: translateY(0);
+   transition: all 0.2s ease;
+
+   .icon {
+      max-width: 30px;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      left: 15px;
+   }
+
+   .text {
+      position: relative;
+
+      padding-left: 35px;
+
+      color: @colorTextLight;
+      font-size: 19px;
+      text-align: center;
+
+      top: 50%;
+      transform: translateY(-50%);
+   }
+}
+
+.popup-message.slide-up {
+   transition: all 0.2s ease;
+   transform: translateY(-80px);
+}

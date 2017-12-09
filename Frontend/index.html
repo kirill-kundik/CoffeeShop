@@ -1,3 +1,4 @@
+<!-- Max was here -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,16 +26,92 @@
 <body>
 
 <div class="header">
-    <div class="container-fluid">
-        <div class="row">
-            <a class="col-sm-4 header-title" id="to-main-page" href="">КАВ'ЯРНЯ</a>
-            <a class="col-sm-2 header-button" id="menu-button" href="">МЕНЮ</a>
-            <a class="col-sm-2 header-button" id="contacts-button" href="">ЗАКЛАДИ</a>
-            <a class="col-sm-2 header-button" id="sign-in-button" href="">УВІЙТИ</a>
+    <div class="header-inner">
+        <a class="header-title link-header" id="to-main-page" href="">КАВ'ЯРНЯ</a>
+
+        <div class="header-buttons">
+            •
+            <a class="header-button link-header" id="menu-button" href="">МЕНЮ</a>
+            •
+            <a class="header-button link-header" id="contacts-button" href="">ЗАКЛАДИ</a>
+            •
+            <a class="header-button link-header" id="sign-in-button" href="">УВІЙТИ</a>
+            •
+        </div>
+
+        <div class="cart-button">
+            <img class="cart-img" src="www/assets/images/cart.png">
+            <div class="items-count">1</div>
+        </div>
+        <div id="cart_header">
+            <div class="arrow-up arrow-black"></div>
+            <div class="background">
+                <div class="arrow-up"></div>
+
+                <div id="header-cart-list"></div>
+
+                <div class="sum">
+                    <div class="sum-text">
+                        Разом: 228 грн
+                    </div>
+                    <a class="btn btn-default make-order">Замовити</a>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
+
+<div class="container-fluid main-container">
+    <div class="row menu-title">
+        МЕНЮ
+    </div>
+
+    <div class="filter-buttons" data-toggle="buttons">
+        <label id="type1" class="btn btn-default active">
+            <input type="radio" name="options" autocomplete="off" checked>Усі
+        </label>
+        <label id="type2" class="btn btn-default">
+            <input type="radio" name="options" autocomplete="off">Кава
+        </label>
+        <label id="type3" class="btn btn-default">
+            <input type="radio" name="options" autocomplete="off">Чай
+        </label>
+        <label id="type4" class="btn btn-default">
+            <input type="radio" name="options" autocomplete="off">Інші гарячі напої
+        </label>
+        <label id="type5" class="btn btn-default">
+            <input type="radio" name="options" autocomplete="off">Солодке
+        </label>
+    </div>
+
+    <div class="row" id="items_list">
+
+    </div>
+
+</div>
+
+<footer>
+    <div class="left-side-footer">
+        КАВ'ЯРНЯ - це учбовий проект в рамках курсу НаУКМА.
+        <br>
+        Кав'ярень не існує, платежі не приймаються.
+    </div>
+    <div class="right-side-footer">
+
+    </div>
+</footer>
+
+<div id="popups"></div>
+
+<!-- jQuery JavaScript -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!--Bootsrap JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!--Own JavaScript -->
+<script type="text/javascript" src="www/assets/js/mainMenu.js"></script>
 
 </body>
 </html>
