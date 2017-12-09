@@ -31,152 +31,13 @@ function init_header_cart() {
 
 exports.init_header_cart = init_header_cart;
 },{}],2:[function(require,module,exports){
-var coffee_info = [
-    {
-        id: 1,
-        icon: 'www/assets/images/kapuchino.png',
-        title: "Капучіно",
-        type: 'Кава',
-
-        middle_size: {
-            volume: 250,
-            price: 19
-        },
-        big_size: {
-            volume: 500,
-            price: 25
-        }
-    },
-    {
-        id: 2,
-        icon: 'www/assets/images/americano.png',
-        title: "Амерікано",
-        type: 'Кава',
-
-        middle_size: {
-            volume: 250,
-            price: 19
-        },
-        big_size: {
-            volume: 500,
-            price: 25
-        }
-    },
-    {
-        id: 3,
-        icon: 'www/assets/images/latte.png',
-        title: "Латте",
-        type: 'Кава',
-
-        middle_size: {
-            volume: 250,
-            price: 19
-        },
-        big_size: {
-            volume: 500,
-            price: 25
-        }
-    },
-    {
-        id: 4,
-        icon: 'www/assets/images/espresso.png',
-        title: "Еспрессо",
-        type: 'Кава',
-
-        small_size: {
-            volume: 100,
-            price: 19
-        },
-        middle_size: {
-            volume: 150,
-            price: 25
-        }
-    }, {
-        id: 5,
-        icon: 'www/assets/images/chay1.png',
-        title: "Чай",
-        type: 'Чай',
-
-        small_size: {
-            volume: 100,
-            price: 19
-        },
-        middle_size: {
-            volume: 150,
-            price: 25
-        }
-    }, {
-        id: 6,
-        icon: 'www/assets/images/glintveyn.png',
-        title: "Глінтвейн",
-        type: 'Глінтвейн',
-
-        small_size: {
-            volume: 200,
-            price: 19
-        },
-        middle_size: {
-            volume: 450,
-            price: 25
-        }
-    },{
-        id: 7,
-        icon: 'www/assets/images/sahar.png',
-        title: "Цукор",
-        type: 'Солодке',
-
-        small_size: {
-            volume: 200,
-            price: 10
-        },
-        notLiquid: true
-    }
-
-];
-
-module.exports = coffee_info;
-},{}],3:[function(require,module,exports){
-
-var ejs = require('ejs');
-
-
-exports.Menu_OneItem = ejs.compile("<div class=\"outer col-lg-4 col-sm-6 col-xs-12\">\r\n    <div class=\"menu-item\">\r\n        <img class=\"item-image\" src=<%= item.icon %>>\r\n        <div class=\"info\">\r\n            <div class=\"black-background\"></div>\r\n            <div class=\"info-background\"></div>\r\n            <div class=\"title\"><%= item.title %></div>\r\n\r\n            <div class=\"items-kinds\">\r\n                <% if('small_size' in item) { %>\r\n                <div class=\"category\">\r\n                    <div class=\"size\">\r\n                        Маленький:\r\n                        <div class=\"volume\"><%= item.small_size.volume %>\r\n                            <%= item.notLiquid ? \" г\" : \" мл\" %></div>\r\n                    </div>\r\n                    <div class=\"price\"><%= item.small_size.price %> грн</div>\r\n                    <a class=\"btn btn-default add-small\">\r\n                        <span class=\"glyphicon glyphicon-plus\"></span>\r\n                    </a>\r\n                </div>\r\n                <% } if('middle_size' in item) { %>\r\n                <div class=\"category\">\r\n                    <div class=\"size\">\r\n                        Середній:\r\n                        <div class=\"volume\"><%= item.middle_size.volume %>\r\n                            <%= item.notLiquid ? \" г\" : \" мл\" %></div>\r\n                    </div>\r\n                    <div class=\"price\"><%= item.middle_size.price %> грн</div>\r\n                    <a class=\"btn btn-default add-middle\">\r\n                        <span class=\"glyphicon glyphicon-plus\"></span>\r\n                    </a>\r\n                </div>\r\n                <% } if('big_size' in item) { %>\r\n                <div class=\"category\">\r\n                    <div class=\"size\">\r\n                        Великий:\r\n                        <div class=\"volume\"><%= item.big_size.volume %>\r\n                            <%= item.notLiquid ? \" г\" : \" мл\" %></div>\r\n                    </div>\r\n                    <div class=\"price\"><%= item.big_size.price %> грн</div>\r\n                    <a class=\"btn btn-default add-big\">\r\n                        <span class=\"glyphicon glyphicon-plus\"></span>\r\n                    </a>\r\n                </div>\r\n                <% } %>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>");
-exports.Cart_OneItem = ejs.compile("<div class=\"cart-item container-fluid\">\r\n    <div class=\"col-xs-4 image-column\">\r\n        <img class=\"cart-img\" src=<%= item.icon %> >\r\n    </div>\r\n\r\n    <div class=\"col-xs-4 info-column\">\r\n        <div class=\"item-title\"><%= item.title %></div>\r\n        <div class=\"price\"><%= item[size].price %> грн</div>\r\n        <div class=\"volume\"><%= item[size].volume %> <%= item.notLiquid ? \" г\" : \" мл\" %> </div>\r\n    </div>\r\n\r\n    <div class=\"col-xs-4 count-column\">\r\n        <div class=\"plus-amount change-amount\">\r\n            <span class=\"glyphicon glyphicon-chevron-up\"></span>\r\n        </div>\r\n        <div class=\"amount\"><%= quantity %></div>\r\n        <div class=\"minus-amount change-amount\">\r\n            <span class=\"glyphicon glyphicon-chevron-down\"></span>\r\n        </div>\r\n    </div>\r\n</div>");
-exports.popup = ejs.compile("<div class=\"popup-message\">\r\n    <img class=\"icon\" src=\"www/assets/images/cart.png\">\r\n    <div class=\"text\"> <%= str %> </div>\r\n</div>");
-
-},{"ejs":12}],4:[function(require,module,exports){
-$(function(){
-    //This code will execute when the page is ready
-    var CoffeeMenu = require('./menu/CoffeeMenu');
-    var CoffeeCart = require('./menu/CoffeeCart');
-    // var Coffee_List = require('./Coffee_List');
-    // var PizzaOrderPage = require('./pizza/PizzaOrderPage');
-    var cart = require('./Cart');
-    // var popup = require('./popup');
-
-    CoffeeCart.initialiseCart();
-    CoffeeMenu.initialiseMenu();
-
-    cart.init_header_cart();
-
-    // if(window.location.href.contains('order')) {
-    //     PizzaOrderPage.initializeOrderPage();
-    // }
-
-
-    var testScrolling = require('./testScrolling');
-    testScrolling.init();
-
-});
-
-},{"./Cart":1,"./menu/CoffeeCart":5,"./menu/CoffeeMenu":6,"./testScrolling":9}],5:[function(require,module,exports){
 String.prototype.contains = function (substring) {
     return this.toLowerCase().indexOf(substring.toLowerCase()) !== -1;
 };
 
-var Templates = require('../Templates');
+var Templates = require('../Main/Templates');
 var cart_key = "cart_key";
-var storage = require("../storage");
+var storage = require("./storage");
 
 var $counter = $(".items-count");
 
@@ -307,121 +168,7 @@ exports.initialiseCart = initialiseCart;
 exports.sizes = sizes;
 
 exports.getSum = getSum;
-},{"../Templates":3,"../storage":8}],6:[function(require,module,exports){
-var Templates = require('../Templates');
-var CoffeeCart = require('./CoffeeCart');
-var Items_List = require('../Coffee_List');
-var popup = require('../popup');
-
-// var api = require('../API');
-//var Items_List;
-
-//HTML едемент куди будуть додаватися піци
-var $items_list = $("#items_list");
-
-function showList(list) {
-    //Очищаємо старі піци в кошику
-    $items_list.html("");
-
-    //Онволення однієї піци
-    function showOneItem(item) {
-        var html_code = Templates.Menu_OneItem({item: item});
-
-        var $node = $(html_code);
-
-        $node.find(".add-big").click(function () {
-            CoffeeCart.addToCart(item, CoffeeCart.sizes.Big);
-            popup.new_popup(item.title + " великий");
-        });
-        $node.find(".add-middle").click(function () {
-            CoffeeCart.addToCart(item, CoffeeCart.sizes.Middle);
-            popup.new_popup(item.title + " середній");
-        });
-        $node.find(".add-small").click(function () {
-            CoffeeCart.addToCart(item, CoffeeCart.sizes.Small);
-            popup.new_popup(item.title + " маленький");
-        });
-
-        $items_list.append($node);
-    }
-
-    list.forEach(showOneItem);
-}
-
-function filter(filters, negative_filters) {
-    var items_shown = [];
-
-    Items_List.forEach(function (item) {
-
-        var add = true;
-        negative_filters.forEach(function (t) {
-            if (item.type === t) {
-                add = false;
-            }
-        });
-
-        if (add) {
-            add = true;
-            filters.forEach(function (t) {
-                if (item.type !== t) {
-                    add = false;
-                }
-            });
-            if (add)
-                items_shown.push(item);
-        }
-    });
-
-    //Показати відфільтровані піци
-    showList(items_shown);
-}
-
-function initialiseMenu() {
-    // api.getPizzaList(function (err, data) {
-    //     Items_List = data;
-    // });
-    showList(Items_List);
-
-    $('#type1').click(function () {
-        showList(Items_List);
-    });
-    $('#type2').click(function () {
-        filter(['Кава'],[]);
-    });
-    $('#type3').click(function () {
-        filter(['Чай'],[]);
-    });
-    $('#type4').click(function () {
-        filter([], ['Кава', 'Чай', 'Солодке']);
-    });
-    $('#type5').click(function () {
-        filter(['Солодке'], []);
-    });
-}
-
-exports.filterPizza = filter;
-exports.initialiseMenu = initialiseMenu;
-},{"../Coffee_List":2,"../Templates":3,"../popup":7,"./CoffeeCart":5}],7:[function(require,module,exports){
-var Templates = require('./Templates');
-var $parent = $("#popups");
-
-function new_popup(str) {
-    var html_code = Templates.popup({str: str});
-    var $node = $(html_code);
-
-    $parent.append($node);
-    $node.fadeIn("fast");
-    $node.addClass('slide-up');
-    setTimeout(function () {
-        $node.removeClass('slide-up');
-        $node.fadeOut("fast", function () {
-            $node.remove();
-        });
-    }, 2000);
-}
-
-exports.new_popup = new_popup;
-},{"./Templates":3}],8:[function(require,module,exports){
+},{"../Main/Templates":4,"./storage":3}],3:[function(require,module,exports){
 var basil = require('basil.js');
 var storage = new basil();
 
@@ -432,7 +179,27 @@ exports.get = function (key) {
 exports.set = function (key, value) {
     return storage.set(key, value);
 }
-},{"basil.js":10}],9:[function(require,module,exports){
+},{"basil.js":7}],4:[function(require,module,exports){
+
+var ejs = require('ejs');
+
+
+exports.Menu_OneItem = ejs.compile("<div class=\"outer col-lg-4 col-sm-6 col-xs-12\">\r\n    <div class=\"menu-item\">\r\n        <img class=\"item-image\" src=<%= item.icon %>>\r\n        <div class=\"info\">\r\n            <div class=\"black-background\"></div>\r\n            <div class=\"info-background\"></div>\r\n            <div class=\"title\"><%= item.title %></div>\r\n\r\n            <div class=\"items-kinds\">\r\n                <% if('small_size' in item) { %>\r\n                <div class=\"category\">\r\n                    <div class=\"size\">\r\n                        Маленький:\r\n                        <div class=\"volume\"><%= item.small_size.volume %>\r\n                            <%= item.notLiquid ? \" г\" : \" мл\" %></div>\r\n                    </div>\r\n                    <div class=\"price\"><%= item.small_size.price %> грн</div>\r\n                    <a class=\"btn btn-default add-small\">\r\n                        <span class=\"glyphicon glyphicon-plus\"></span>\r\n                    </a>\r\n                </div>\r\n                <% } if('middle_size' in item) { %>\r\n                <div class=\"category\">\r\n                    <div class=\"size\">\r\n                        Середній:\r\n                        <div class=\"volume\"><%= item.middle_size.volume %>\r\n                            <%= item.notLiquid ? \" г\" : \" мл\" %></div>\r\n                    </div>\r\n                    <div class=\"price\"><%= item.middle_size.price %> грн</div>\r\n                    <a class=\"btn btn-default add-middle\">\r\n                        <span class=\"glyphicon glyphicon-plus\"></span>\r\n                    </a>\r\n                </div>\r\n                <% } if('big_size' in item) { %>\r\n                <div class=\"category\">\r\n                    <div class=\"size\">\r\n                        Великий:\r\n                        <div class=\"volume\"><%= item.big_size.volume %>\r\n                            <%= item.notLiquid ? \" г\" : \" мл\" %></div>\r\n                    </div>\r\n                    <div class=\"price\"><%= item.big_size.price %> грн</div>\r\n                    <a class=\"btn btn-default add-big\">\r\n                        <span class=\"glyphicon glyphicon-plus\"></span>\r\n                    </a>\r\n                </div>\r\n                <% } %>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>");
+exports.Cart_OneItem = ejs.compile("<div class=\"cart-item container-fluid\">\r\n    <div class=\"col-xs-4 image-column\">\r\n        <img class=\"cart-img\" src=<%= item.icon %> >\r\n    </div>\r\n\r\n    <div class=\"col-xs-4 info-column\">\r\n        <div class=\"item-title\"><%= item.title %></div>\r\n        <div class=\"price\"><%= item[size].price %> грн</div>\r\n        <div class=\"volume\"><%= item[size].volume %> <%= item.notLiquid ? \" г\" : \" мл\" %> </div>\r\n    </div>\r\n\r\n    <div class=\"col-xs-4 count-column\">\r\n        <div class=\"plus-amount change-amount\">\r\n            <span class=\"glyphicon glyphicon-chevron-up\"></span>\r\n        </div>\r\n        <div class=\"amount\"><%= quantity %></div>\r\n        <div class=\"minus-amount change-amount\">\r\n            <span class=\"glyphicon glyphicon-chevron-down\"></span>\r\n        </div>\r\n    </div>\r\n</div>");
+exports.popup = ejs.compile("<div class=\"popup-message\">\r\n    <img class=\"icon\" src=\"www/assets/images/cart.png\">\r\n    <div class=\"text\"> <%= str %> </div>\r\n</div>");
+
+},{"ejs":9}],5:[function(require,module,exports){
+$(function () {
+    var CoffeeCart = require('../Cart/CoffeeCart');
+    var cart = require('../Cart/CartHeader');
+    var testScrolling = require('./testScrolling');
+
+    CoffeeCart.initialiseCart();
+    cart.init_header_cart();
+    testScrolling.init();
+});
+
+},{"../Cart/CartHeader":1,"../Cart/CoffeeCart":2,"./testScrolling":6}],6:[function(require,module,exports){
 var $animation_elements = $('.animation-element');
 var $window = $(window);
 
@@ -461,11 +228,11 @@ function init() {
     $window.on('scroll resize', check_if_in_view);
     $window.trigger('scroll');
 
-    //alert("test");
+    // alert("test");
 }
 
 exports.init = init;
-},{}],10:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
 (function () {
 	// Basil
 	var Basil = function (options) {
@@ -853,9 +620,9 @@ exports.init = init;
 
 })();
 
-},{}],11:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 
-},{}],12:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 /*
  * EJS Embedded JavaScript templates
  * Copyright 2112 Matthew Eernisse (mde@fleegix.org)
@@ -1723,7 +1490,7 @@ if (typeof window != 'undefined') {
   window.ejs = exports;
 }
 
-},{"../package.json":14,"./utils":13,"fs":11,"path":15}],13:[function(require,module,exports){
+},{"../package.json":11,"./utils":10,"fs":8,"path":12}],10:[function(require,module,exports){
 /*
  * EJS Embedded JavaScript templates
  * Copyright 2112 Matthew Eernisse (mde@fleegix.org)
@@ -1889,7 +1656,7 @@ exports.cache = {
   }
 };
 
-},{}],14:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 module.exports={
   "_from": "ejs@^2.4.1",
   "_id": "ejs@2.5.7",
@@ -1970,7 +1737,7 @@ module.exports={
   "version": "2.5.7"
 }
 
-},{}],15:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 (function (process){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -2198,7 +1965,7 @@ var substr = 'ab'.substr(-1) === 'b'
 ;
 
 }).call(this,require('_process'))
-},{"_process":16}],16:[function(require,module,exports){
+},{"_process":13}],13:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 
@@ -2384,4 +2151,4 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}]},{},[4]);
+},{}]},{},[5]);

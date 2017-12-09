@@ -26,7 +26,7 @@ function init() {
     $window.on('scroll resize', check_if_in_view);
     $window.trigger('scroll');
 
-    //alert("test");
+    // alert("test");
 }
 
 exports.init = init;

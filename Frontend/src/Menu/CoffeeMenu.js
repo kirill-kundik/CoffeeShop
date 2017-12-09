@@ -1,7 +1,7 @@
-var Templates = require('../Templates');
-var CoffeeCart = require('./CoffeeCart');
-var Items_List = require('../Coffee_List');
-var popup = require('../popup');
+var Templates = require('../Main/Templates');
+var CoffeeCart = require('../Cart/CoffeeCart');
+var Items_List = require('./Coffee_List');
+var popup = require('../Main/popup');
 
 // var api = require('../API');
 //var Items_List;
