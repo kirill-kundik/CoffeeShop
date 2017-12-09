@@ -44,11 +44,17 @@
          .header-button {
             box-sizing: border-box;
             position: relative;
-            padding-right: 50px;
-            padding-left: 50px;
+            padding: 20px 50px 20px 50px;
+
 
             font-size: 19px;
+
          }
+      }
+
+      .selected {
+         font-weight: 700;
+         border-bottom: solid 3px white;
       }
 
       .cart-button {
@@ -105,10 +111,14 @@ a.link-header {
 
 a.link-header:hover {
    color: #adaba4;
+   text-decoration: none;
+   cursor: pointer;
 }
 
 a.link-header:active {
    color: #797772;
+   text-decoration: none;
+   cursor: pointer;
 }
 
 @media (max-width: 1050px) {
