@@ -1,3 +1,5 @@
+@import "main";
+
 body {
    font-size: 16px;
    font-family: 'Open Sans', sans-serif;
@@ -64,7 +66,7 @@ i.fa {
 .animation-element {
    position: relative;
    width: 30%;
-   margin: 0% 1.33 2.66% 1.33%;
+   margin: 0% 1.33% 2.66% 1.33%;
    float: left;
 }
 /*3 grid layout*/
@@ -89,15 +91,15 @@ i.fa {
 
 .bounce-up .subject {
    opacity: 0;
-   -moz-transition: all 700ms ease-out;
-   -webkit-transition: all 700ms ease-out;
-   -o-transition: all 700ms ease-out;
+   //-moz-transition: all 700ms ease-out;
+   //-webkit-transition: all 700ms ease-out;
+   //-o-transition: all 700ms ease-out;
    transition: all 700ms ease-out;
-   -moz-transform: translate3d(0px, 200px, 0px);
-   -webkit-transform: translate3d(0px, 200px, 0px);
-   -o-transform: translate(0px, 200px);
-   -ms-transform: translate(0px, 200px);
-   transform: translate3d(0px, 200, 0px);
+   //-moz-transform: translate3d(0px, 200px, 0px);
+   //-webkit-transform: translate3d(0px, 200px, 0px);
+   //-o-transform: translate(0px, 200px);
+   //-ms-transform: translate(0px, 200px);
+   //transform: translate3d(0px, 200, 0px);
    -webkit-backface-visibility: hidden;
    -moz-backface-visibility: hidden;
    backface-visibility: hidden;
@@ -105,11 +107,11 @@ i.fa {
 
 .bounce-up.in-view .subject {
    opacity: 1;
-   -moz-transform: translate3d(0px, 0px, 0px);
-   -webkit-transform: translate3d(0px, 0px, 0px);
-   -o-transform: translate(0px, 0px);
-   -ms-transform: translate(0px, 0px);
-   transform: translate3d(0px, 0px, 0px);
+   //-moz-transform: translate3d(0px, 0px, 0px);
+   //-webkit-transform: translate3d(0px, 0px, 0px);
+   //-o-transform: translate(0px, 0px);
+   //-ms-transform: translate(0px, 0px);
+   //transform: translate3d(0px, 0px, 0px);
 }
 
 .subject {

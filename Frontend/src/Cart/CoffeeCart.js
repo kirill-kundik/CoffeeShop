@@ -2,9 +2,9 @@ String.prototype.contains = function (substring) {
     return this.toLowerCase().indexOf(substring.toLowerCase()) !== -1;
 };
 
-var Templates = require('../Templates');
+var Templates = require('../Main/Templates');
 var cart_key = "cart_key";
-var storage = require("../storage");
+var storage = require("./storage");
 
 var $counter = $(".items-count");
 

@@ -1,6 +1,4 @@
-/**
- * Created by Andriy on 10.03.2015.
- */
+
 module.exports = function(grunt) {
     //Налаштування збірки Grunt
     var config = {
@@ -16,14 +14,18 @@ module.exports = function(grunt) {
                 transform:  [ require('brfs') ],
                 browserifyOptions: {
                     //Папка з корнем джерельних кодів javascript
-                    basedir: "Frontend/src/js/"
+                    basedir: "Frontend/src/"
                 }
             },
 
-            //Збірка з назвою піца
             menu: {
-                src:        'Frontend/src/main.js',
-                dest:       'Frontend/www/assets/js/main.js'
+                src:        'Frontend/src/Menu/mainMenu.js',
+                dest:       'Frontend/www/assets/js/mainMenu.js'
+            },
+
+            mainPage: {
+                src:        'Frontend/src/Main_Page/mainPage.js',
+                dest:       'Frontend/www/assets/js/mainPage.js'
             }
         }
     };
@@ -38,7 +40,7 @@ module.exports = function(grunt) {
             //На зміни в яких файлах реагувати
             files: ['Frontend/src/**/*.js', 'Frontend/**/*.ejs'],
             //Які завдання виконувати під час зміни в файлах
-            tasks: ['browserify:menu']
+            tasks: ['browserify:menu', 'browserify:mainPage']
         }
     };
 
@@ -56,6 +58,7 @@ module.exports = function(grunt) {
     grunt.registerTask('default',
         [
             'browserify:menu',
+            'browserify:mainPage'
             //Інші завдання які необхідно виконати
         ]
     );
