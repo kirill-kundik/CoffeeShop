@@ -1,9 +1,7 @@
 $(function () {
     var CoffeeCart = require('../Cart/CoffeeCart');
-    var cart = require('../Cart/CartHeader');
-    var testScrolling = require('./testScrolling');
+    var cartHeader = require('../Cart/CartHeader');
 
     CoffeeCart.initialiseCart();
-    cart.init_header_cart();
-    testScrolling.init();
+    cartHeader.init_header_cart();
 });
