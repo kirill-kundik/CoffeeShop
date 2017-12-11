@@ -28,7 +28,6 @@ if(window.location.href.contains('cart')) {
     $cart = $(".items");
     $footer_cart = $(".sum-inner");
     $counter = $(".counter");
-
 } else {
     cart_page = false;
     $cart = $("#header-cart-list");
@@ -132,7 +131,6 @@ function updateCart() {
         }
     }
 
-
     Cart.forEach(showOneItemInCart);
     storage.set(cart_key, Cart);
     setCounter();
@@ -169,20 +167,6 @@ exports.getSum = getSum;
 },{"../Main/Templates":4,"./storage":3}],2:[function(require,module,exports){
 var $flyout;
 
-$(function () {
-    $flyout = $('.sum-panel');
-    $(window).scroll(function () {
-        scrollCheck();
-    });
-    $(window).resize(function () {
-        scrollCheck();
-    });
-
-
-    var CoffeeCart = require('../Cart/CoffeeCart');
-    CoffeeCart.initialiseCart();
-});
-
 var scrollCheck = function () {
     // console.log(($(window).height() + $(this).scrollTop()) + ", " + ($(document).height() - 90));
     if ($(window).height() + $(this).scrollTop() < $(document).height() - 90) {
@@ -191,6 +175,31 @@ var scrollCheck = function () {
         $flyout.removeClass('fixed');
     }
 };
+
+$(function () {
+    $flyout = $('.sum-panel');
+    $(window).scroll(function () {
+        scrollCheck();
+    });
+    $(window).resize(function () {
+        scrollCheck();
+    });
+    $(window).click(function () {
+        scrollCheck();
+    });
+
+
+
+    var CoffeeCart = require('../Cart/CoffeeCart');
+    CoffeeCart.initialiseCart();
+});
+
+$( window ).on( "load", function() {
+    // console.log( "window loaded" );
+    scrollCheck();
+});
+
+
 },{"../Cart/CoffeeCart":1}],3:[function(require,module,exports){
 var basil = require('basil.js');
 var storage = new basil();

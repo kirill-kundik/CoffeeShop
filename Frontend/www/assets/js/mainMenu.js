@@ -60,7 +60,6 @@ if(window.location.href.contains('cart')) {
     $cart = $(".items");
     $footer_cart = $(".sum-inner");
     $counter = $(".counter");
-
 } else {
     cart_page = false;
     $cart = $("#header-cart-list");
@@ -163,7 +162,6 @@ function updateCart() {
             $order_btn.addClass("disabled").attr("rel", "tooltip");
         }
     }
-
 
     Cart.forEach(showOneItemInCart);
     storage.set(cart_key, Cart);
