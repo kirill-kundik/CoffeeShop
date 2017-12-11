@@ -1,10 +1,9 @@
 var Templates = require('../Main/Templates');
 var CoffeeCart = require('../Cart/CoffeeCart');
-var Items_List = require('./Coffee_List');
 var popup = require('../Main/popup');
 
-// var api = require('../API');
-//var Items_List;
+var api = require('../FrontendAPI');
+var Items_List;
 
 //HTML едемент куди будуть додаватися піци
 var $items_list = $("#items_list");
@@ -67,19 +66,22 @@ function filter(filters, negative_filters) {
 }
 
 function initialiseMenu() {
-    // api.getPizzaList(function (err, data) {
-    //     Items_List = data;
-    // });
-    showList(Items_List);
+    $('#menu-button').addClass('selected');
+    document.getElementById('contacts-button').href = '/';
+
+    api.getList(function (err, data) {
+        Items_List = data;
+        showList(Items_List);
+    });
 
     $('#type1').click(function () {
         showList(Items_List);
     });
     $('#type2').click(function () {
-        filter(['Кава'],[]);
+        filter(['Кава'], []);
     });
     $('#type3').click(function () {
-        filter(['Чай'],[]);
+        filter(['Чай'], []);
     });
     $('#type4').click(function () {
         filter([], ['Кава', 'Чай', 'Солодке']);

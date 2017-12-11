@@ -168,7 +168,7 @@ exports.initialiseCart = initialiseCart;
 exports.sizes = sizes;
 
 exports.getSum = getSum;
-},{"../Main/Templates":4,"./storage":3}],3:[function(require,module,exports){
+},{"../Main/Templates":5,"./storage":3}],3:[function(require,module,exports){
 var basil = require('basil.js');
 var storage = new basil();
 
@@ -180,15 +180,57 @@ exports.set = function (key, value) {
     return storage.set(key, value);
 }
 },{"basil.js":9}],4:[function(require,module,exports){
+/**
+ * Created by chaika on 09.02.16.
+ */
+var API_URL = "http://localhost:5050";
+
+function backendGet(url, callback) {
+    $.ajax({
+        url: API_URL + url,
+        type: 'GET',
+        success: function (data) {
+            callback(null, data);
+        },
+        error: function () {
+            callback(new Error("Ajax Failed"));
+        }
+    })
+}
+
+function backendPost(url, data, callback) {
+    $.ajax({
+        url: API_URL + url,
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify(data),
+        success: function (data) {
+            callback(null, data);
+        },
+        error: function () {
+            callback(new Error("Ajax Failed"));
+        }
+    })
+}
+
+exports.getList = function (callback) {
+    backendGet("/api/get-list/", callback);
+};
+
+exports.createOrder = function (order_info, callback) {
+    backendPost("/api/create-order/", order_info, callback);
+};
+
+},{}],5:[function(require,module,exports){
 
 var ejs = require('ejs');
 
 
 exports.Menu_OneItem = ejs.compile("<div class=\"outer col-lg-4 col-sm-6 col-xs-12\">\r\n    <div class=\"menu-item\">\r\n        <img class=\"item-image\" src=<%= item.icon %>>\r\n        <div class=\"info\">\r\n            <div class=\"black-background\"></div>\r\n            <div class=\"info-background\"></div>\r\n            <div class=\"title\"><%= item.title %></div>\r\n\r\n            <div class=\"items-kinds\">\r\n                <% if('small_size' in item) { %>\r\n                <div class=\"category\">\r\n                    <div class=\"size\">\r\n                        Маленький:\r\n                        <div class=\"volume\"><%= item.small_size.volume %>\r\n                            <%= item.notLiquid ? \" г\" : \" мл\" %></div>\r\n                    </div>\r\n                    <div class=\"price\"><%= item.small_size.price %> грн</div>\r\n                    <a class=\"btn btn-default add-small\">\r\n                        <span class=\"glyphicon glyphicon-plus\"></span>\r\n                    </a>\r\n                </div>\r\n                <% } if('middle_size' in item) { %>\r\n                <div class=\"category\">\r\n                    <div class=\"size\">\r\n                        Середній:\r\n                        <div class=\"volume\"><%= item.middle_size.volume %>\r\n                            <%= item.notLiquid ? \" г\" : \" мл\" %></div>\r\n                    </div>\r\n                    <div class=\"price\"><%= item.middle_size.price %> грн</div>\r\n                    <a class=\"btn btn-default add-middle\">\r\n                        <span class=\"glyphicon glyphicon-plus\"></span>\r\n                    </a>\r\n                </div>\r\n                <% } if('big_size' in item) { %>\r\n                <div class=\"category\">\r\n                    <div class=\"size\">\r\n                        Великий:\r\n                        <div class=\"volume\"><%= item.big_size.volume %>\r\n                            <%= item.notLiquid ? \" г\" : \" мл\" %></div>\r\n                    </div>\r\n                    <div class=\"price\"><%= item.big_size.price %> грн</div>\r\n                    <a class=\"btn btn-default add-big\">\r\n                        <span class=\"glyphicon glyphicon-plus\"></span>\r\n                    </a>\r\n                </div>\r\n                <% } %>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>");
 exports.Cart_OneItem = ejs.compile("<div class=\"cart-item container-fluid\">\r\n    <div class=\"col-xs-4 image-column\">\r\n        <img class=\"cart-img\" src=<%= item.icon %> >\r\n    </div>\r\n\r\n    <div class=\"col-xs-4 info-column\">\r\n        <div class=\"item-title\"><%= item.title %></div>\r\n        <div class=\"price\"><%= item[size].price %> грн</div>\r\n        <div class=\"volume\"><%= item[size].volume %> <%= item.notLiquid ? \" г\" : \" мл\" %> </div>\r\n    </div>\r\n\r\n    <div class=\"col-xs-4 count-column\">\r\n        <div class=\"plus-amount change-amount\">\r\n            <span class=\"glyphicon glyphicon-chevron-up\"></span>\r\n        </div>\r\n        <div class=\"amount\"><%= quantity %></div>\r\n        <div class=\"minus-amount change-amount\">\r\n            <span class=\"glyphicon glyphicon-chevron-down\"></span>\r\n        </div>\r\n    </div>\r\n</div>");
-exports.popup = ejs.compile("<div class=\"popup-message\">\r\n    <img class=\"icon\" src=\"www/assets/images/cart.png\">\r\n    <div class=\"text\"> <%= str %> </div>\r\n</div>");
+exports.popup = ejs.compile("<div class=\"popup-message\">\r\n    <img class=\"icon\" src=\"assets/images/cart.png\">\r\n    <div class=\"text\"> <%= str %> </div>\r\n</div>");
 
-},{"ejs":11}],5:[function(require,module,exports){
+},{"ejs":11}],6:[function(require,module,exports){
 var Templates = require('./Templates');
 var $parent = $("#popups");
 
@@ -208,14 +250,13 @@ function new_popup(str) {
 }
 
 exports.new_popup = new_popup;
-},{"./Templates":4}],6:[function(require,module,exports){
+},{"./Templates":5}],7:[function(require,module,exports){
 var Templates = require('../Main/Templates');
 var CoffeeCart = require('../Cart/CoffeeCart');
-var Items_List = require('./Coffee_List');
 var popup = require('../Main/popup');
 
-// var api = require('../API');
-//var Items_List;
+var api = require('../FrontendAPI');
+var Items_List;
 
 //HTML едемент куди будуть додаватися піци
 var $items_list = $("#items_list");
@@ -278,19 +319,22 @@ function filter(filters, negative_filters) {
 }
 
 function initialiseMenu() {
-    // api.getPizzaList(function (err, data) {
-    //     Items_List = data;
-    // });
-    showList(Items_List);
+    $('#menu-button').addClass('selected');
+    document.getElementById('contacts-button').href = '/';
+
+    api.getList(function (err, data) {
+        Items_List = data;
+        showList(Items_List);
+    });
 
     $('#type1').click(function () {
         showList(Items_List);
     });
     $('#type2').click(function () {
-        filter(['Кава'],[]);
+        filter(['Кава'], []);
     });
     $('#type3').click(function () {
-        filter(['Чай'],[]);
+        filter(['Чай'], []);
     });
     $('#type4').click(function () {
         filter([], ['Кава', 'Чай', 'Солодке']);
@@ -302,112 +346,7 @@ function initialiseMenu() {
 
 exports.filterPizza = filter;
 exports.initialiseMenu = initialiseMenu;
-},{"../Cart/CoffeeCart":2,"../Main/Templates":4,"../Main/popup":5,"./Coffee_List":7}],7:[function(require,module,exports){
-var coffee_info = [
-    {
-        id: 1,
-        icon: 'www/assets/images/kapuchino.png',
-        title: "Капучіно",
-        type: 'Кава',
-
-        middle_size: {
-            volume: 250,
-            price: 19
-        },
-        big_size: {
-            volume: 500,
-            price: 25
-        }
-    },
-    {
-        id: 2,
-        icon: 'www/assets/images/americano.png',
-        title: "Амерікано",
-        type: 'Кава',
-
-        middle_size: {
-            volume: 250,
-            price: 19
-        },
-        big_size: {
-            volume: 500,
-            price: 25
-        }
-    },
-    {
-        id: 3,
-        icon: 'www/assets/images/latte.png',
-        title: "Латте",
-        type: 'Кава',
-
-        middle_size: {
-            volume: 250,
-            price: 19
-        },
-        big_size: {
-            volume: 500,
-            price: 25
-        }
-    },
-    {
-        id: 4,
-        icon: 'www/assets/images/espresso.png',
-        title: "Еспрессо",
-        type: 'Кава',
-
-        small_size: {
-            volume: 100,
-            price: 19
-        },
-        middle_size: {
-            volume: 150,
-            price: 25
-        }
-    }, {
-        id: 5,
-        icon: 'www/assets/images/chay1.png',
-        title: "Чай",
-        type: 'Чай',
-
-        small_size: {
-            volume: 100,
-            price: 19
-        },
-        middle_size: {
-            volume: 150,
-            price: 25
-        }
-    }, {
-        id: 6,
-        icon: 'www/assets/images/glintveyn.png',
-        title: "Глінтвейн",
-        type: 'Глінтвейн',
-
-        small_size: {
-            volume: 200,
-            price: 19
-        },
-        middle_size: {
-            volume: 450,
-            price: 25
-        }
-    },{
-        id: 7,
-        icon: 'www/assets/images/sahar.png',
-        title: "Цукор",
-        type: 'Солодке',
-
-        small_size: {
-            volume: 200,
-            price: 10
-        },
-        notLiquid: true
-    }
-
-];
-
-module.exports = coffee_info;
-},{}],8:[function(require,module,exports){
+},{"../Cart/CoffeeCart":2,"../FrontendAPI":4,"../Main/Templates":5,"../Main/popup":6}],8:[function(require,module,exports){
 $(function(){
     var CoffeeMenu = require('./CoffeeMenu');
     var CoffeeCart = require('../Cart/CoffeeCart');
@@ -418,7 +357,7 @@ $(function(){
     cart.init_header_cart();
 });
 
-},{"../Cart/CartHeader":1,"../Cart/CoffeeCart":2,"./CoffeeMenu":6}],9:[function(require,module,exports){
+},{"../Cart/CartHeader":1,"../Cart/CoffeeCart":2,"./CoffeeMenu":7}],9:[function(require,module,exports){
 (function () {
 	// Basil
 	var Basil = function (options) {

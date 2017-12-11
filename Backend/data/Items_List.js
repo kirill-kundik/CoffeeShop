@@ -1,7 +1,7 @@
 var coffee_info = [
     {
         id: 1,
-        icon: 'www/assets/images/kapuchino.png',
+        icon: 'assets/images/kapuchino.png',
         title: "Капучіно",
         type: 'Кава',
 
@@ -16,7 +16,7 @@ var coffee_info = [
     },
     {
         id: 2,
-        icon: 'www/assets/images/americano.png',
+        icon: 'assets/images/americano.png',
         title: "Амерікано",
         type: 'Кава',
 
@@ -31,7 +31,7 @@ var coffee_info = [
     },
     {
         id: 3,
-        icon: 'www/assets/images/latte.png',
+        icon: 'assets/images/latte.png',
         title: "Латте",
         type: 'Кава',
 
@@ -46,7 +46,7 @@ var coffee_info = [
     },
     {
         id: 4,
-        icon: 'www/assets/images/espresso.png',
+        icon: 'assets/images/espresso.png',
         title: "Еспрессо",
         type: 'Кава',
 
@@ -60,7 +60,7 @@ var coffee_info = [
         }
     }, {
         id: 5,
-        icon: 'www/assets/images/chay1.png',
+        icon: 'assets/images/chay1.png',
         title: "Чай",
         type: 'Чай',
 
@@ -74,7 +74,7 @@ var coffee_info = [
         }
     }, {
         id: 6,
-        icon: 'www/assets/images/glintveyn.png',
+        icon: 'assets/images/glintveyn.png',
         title: "Глінтвейн",
         type: 'Глінтвейн',
 
@@ -88,7 +88,7 @@ var coffee_info = [
         }
     },{
         id: 7,
-        icon: 'www/assets/images/sahar.png',
+        icon: 'assets/images/sahar.png',
         title: "Цукор",
         type: 'Солодке',
 
