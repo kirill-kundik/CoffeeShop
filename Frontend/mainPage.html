@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Coffee</title>
+
+    <!-- Bootsrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+    <!-- LESS основний файл -->
+    <link rel="stylesheet/less" type="text/css" href="www/assets/less/main/main.less"/>
+    <!-- LESS JavaScript компілятор -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
+
+</head>
+<body>
+
+<div class="header">
+    <div class="header-inner">
+        <a class="header-title link-header" id="to-main-page" href="">КАВ'ЯРНЯ</a>
+
+        <div class="header-buttons">
+            •
+            <a class="header-button link-header" id="menu-button" href="">МЕНЮ</a>
+            •
+            <a class="header-button link-header" id="contacts-button" href="">ЗАКЛАДИ</a>
+            •
+            <a class="header-button link-header" id="sign-in-button" href="">УВІЙТИ</a>
+            •
+        </div>
+
+        <div class="cart-button">
+            <img class="cart-img" src="www/assets/images/cart.png">
+            <div class="items-count">1</div>
+        </div>
+        <div id="cart_header">
+            <div class="arrow-up arrow-black"></div>
+            <div class="background">
+                <div class="arrow-up"></div>
+
+                <div id="header-cart-list"></div>
+
+                <div class="sum">
+                    <div class="sum-text">
+                        Разом: 228 грн
+                    </div>
+                    <a class="btn btn-default make-order">Замовити</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="mainpage-container">
+    <div class="parallax first-bg">
+        <div class="content">
+            <div class="coffee">Кава.</div>
+            <div class="description">Прості радощі нашого життя.</div>
+        </div>
+    </div>
+    <div class="first-content">
+        <div class="content-header">
+            Найсвіжіше для Вас та Ваших коханих.
+        </div>
+        <div class="content">
+            <div class="coffee">Coffee</div>
+            <div class="cocoa">Cocoa</div>
+            <div class="tea">Tea</div>
+        </div>
+    </div>
+    <div class="parallax second-bg">
+        <div class="content">
+            <div class="coffee">Кава.</div>
+            <div class="description">Прості радощі нашого життя.</div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <div class="left-side-footer">
+        КАВ'ЯРНЯ - це учбовий проект в рамках курсу НаУКМА.
+        <br>
+        Кав'ярень не існує, платежі не приймаються.
+    </div>
+    <div class="right-side-footer">
+
+    </div>
+</footer>
+
+<div id="popups"></div>
+
+<!-- jQuery JavaScript -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!--Bootsrap JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!--Own JavaScript -->
+<script type="text/javascript" src="www/assets/js/mainMenu.js"></script>
+
+</body>
+</html>
