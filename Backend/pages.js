@@ -11,3 +11,10 @@ exports.menuPage = function(req, res) {
         pageName: 'menu'
     });
 };
+
+exports.cartPage = function(req, res) {
+    res.render('cartPage\\cartPage', {
+        pageTitle: 'Кошик',
+        pageName: 'cart'
+    });
+};
