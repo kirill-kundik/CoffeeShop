@@ -1783,29 +1783,34 @@ exports.cache = {
 
 },{}],13:[function(require,module,exports){
 module.exports={
-  "_from": "ejs@^2.4.1",
+  "_args": [
+    [
+      "ejs@2.5.7",
+      "C:\\Users\\golia\\Documents\\GitHub\\CoffeeShop"
+    ]
+  ],
+  "_from": "ejs@2.5.7",
   "_id": "ejs@2.5.7",
   "_inBundle": false,
   "_integrity": "sha1-zIcsFoiArjxxiXYv1f/ACJbJUYo=",
   "_location": "/ejs",
   "_phantomChildren": {},
   "_requested": {
-    "type": "range",
+    "type": "version",
     "registry": true,
-    "raw": "ejs@^2.4.1",
+    "raw": "ejs@2.5.7",
     "name": "ejs",
     "escapedName": "ejs",
-    "rawSpec": "^2.4.1",
+    "rawSpec": "2.5.7",
     "saveSpec": null,
-    "fetchSpec": "^2.4.1"
+    "fetchSpec": "2.5.7"
   },
   "_requiredBy": [
     "/"
   ],
   "_resolved": "https://registry.npmjs.org/ejs/-/ejs-2.5.7.tgz",
-  "_shasum": "cc872c168880ae3c7189762fd5ffc00896c9518a",
-  "_spec": "ejs@^2.4.1",
-  "_where": "C:\\Users\\Maxim\\Documents\\GitHub\\CoffeeShop",
+  "_spec": "2.5.7",
+  "_where": "C:\\Users\\golia\\Documents\\GitHub\\CoffeeShop",
   "author": {
     "name": "Matthew Eernisse",
     "email": "mde@fleegix.org",
@@ -1814,7 +1819,6 @@ module.exports={
   "bugs": {
     "url": "https://github.com/mde/ejs/issues"
   },
-  "bundleDependencies": false,
   "contributors": [
     {
       "name": "Timothy Gu",
@@ -1823,7 +1827,6 @@ module.exports={
     }
   ],
   "dependencies": {},
-  "deprecated": false,
   "description": "Embedded JavaScript templates",
   "devDependencies": {
     "browserify": "^13.0.1",
