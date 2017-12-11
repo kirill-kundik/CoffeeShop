@@ -320,7 +320,7 @@ function filter(filters, negative_filters) {
 
 function initialiseMenu() {
     $('#menu-button').addClass('selected');
-    document.getElementById('contacts-button').href = '/';
+    //document.getElementById('contacts-button').href = '/';
 
     api.getList(function (err, data) {
         Items_List = data;
