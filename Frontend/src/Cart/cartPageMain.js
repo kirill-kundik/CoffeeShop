@@ -29,6 +29,7 @@ $(function () {
 
 $( window ).on( "load", function() {
     // console.log( "window loaded" );
+    $flyout.removeClass("not-visible");
     scrollCheck();
 });
 

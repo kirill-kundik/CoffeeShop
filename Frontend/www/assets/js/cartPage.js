@@ -125,7 +125,11 @@ function updateCart() {
             $order_btn.removeClass("disabled").attr("rel", null);
         }
     } else {
-        $cart.append('<div class="label-empty">Кошик пустий</div>');
+        if(!cart_page) {
+            $cart.append('<div class="label-empty">Кошик пустий</div>');
+        }else {
+            $cart.append($(Templates.empty_cart()));
+        }
         if (!$order_btn.hasClass('disabled')) {
             $order_btn.addClass("disabled").attr("rel", "tooltip");
         }
@@ -196,6 +200,7 @@ $(function () {
 
 $( window ).on( "load", function() {
     // console.log( "window loaded" );
+    $flyout.removeClass("not-visible");
     scrollCheck();
 });
 
@@ -220,6 +225,7 @@ exports.Menu_OneItem = ejs.compile("<div class=\"outer col-lg-4 col-sm-6 col-xs-
 exports.CartHeader_OneItem = ejs.compile("<div class=\"cart-item container-fluid\">\r\n    <div class=\"col-xs-4 image-column\">\r\n        <img class=\"cart-img\" src=<%= item.icon %> >\r\n    </div>\r\n\r\n    <div class=\"col-xs-4 info-column\">\r\n        <div class=\"item-title\"><%= item.title %></div>\r\n        <div class=\"price\"><%= item[size].price %> грн</div>\r\n        <div class=\"volume\"><%= item[size].volume %> <%= item.notLiquid ? \" г\" : \" мл\" %> </div>\r\n    </div>\r\n\r\n    <div class=\"col-xs-4 count-column\">\r\n        <div class=\"plus-amount change-amount\">\r\n            <span class=\"glyphicon glyphicon-chevron-up\"></span>\r\n        </div>\r\n        <div class=\"amount\"><%= quantity %></div>\r\n        <div class=\"minus-amount change-amount\">\r\n            <span class=\"glyphicon glyphicon-chevron-down\"></span>\r\n        </div>\r\n    </div>\r\n</div>");
 exports.Cart_OneItem = ejs.compile("<div class=\"item row\">\r\n    <img class=\"item-image\" src=<%= item.icon %>>\r\n    <div class=\"item-right\">\r\n        <div class=\"item-info col-xs-5\">\r\n            <div class=\"item-name\"><%= item.title %></div>\r\n            <div class=\"item-volume\"><%= item[size].volume %><%= item.notLiquid ? \" г\" : \" мл\" %></div>\r\n            <div class=\"item-price\"><%= item[size].price %> грн</div>\r\n        </div>\r\n        <div class=\"item-amount col-xs-4\">\r\n            <a class=\"btn btn-default minus-amount\">\r\n                <span class=\"glyphicon glyphicon-minus\"></span>\r\n            </a>\r\n            <div class=\"item-amount-text\"><%= quantity %></div>\r\n            <a class=\"btn btn-default plus-amount\">\r\n                <span class=\"glyphicon glyphicon-plus\"></span>\r\n            </a>\r\n        </div>\r\n        <div class=\"item-full-price col-xs-3\">\r\n            <div class=\"item-price-text\">Сума</div>\r\n            <div class=\"item-price\"><%= item[size].price*quantity %> грн</div>\r\n        </div>\r\n    </div>\r\n    <a class=\"delete link-header\"><span class=\"glyphicon glyphicon-remove\"></span></a>\r\n</div>");
 exports.popup = ejs.compile("<div class=\"popup-message\">\r\n    <img class=\"icon\" src=\"assets/images/cart.png\">\r\n    <div class=\"text\"> <%= str %> </div>\r\n</div>");
+exports.empty_cart = ejs.compile("<div class=\"empty\">\r\n    <img src=\"assets/images/cart_empty.png\">\r\n    <h1 class=\"label-empty\">В кошику пусто</h1>\r\n    <div class=\"label-empty\">Схоже у Вас ще немає товарів у кошику</div>\r\n    <a class=\"to_menu\" href=\"/menu.html\">У меню</a>\r\n</div>");
 
 },{"ejs":7}],5:[function(require,module,exports){
 (function () {

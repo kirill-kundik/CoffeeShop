@@ -124,7 +124,11 @@ function updateCart() {
             $order_btn.removeClass("disabled").attr("rel", null);
         }
     } else {
-        $cart.append('<div class="label-empty">Кошик пустий</div>');
+        if(!cart_page) {
+            $cart.append('<div class="label-empty">Кошик пустий</div>');
+        }else {
+            $cart.append($(Templates.empty_cart()));
+        }
         if (!$order_btn.hasClass('disabled')) {
             $order_btn.addClass("disabled").attr("rel", "tooltip");
         }
