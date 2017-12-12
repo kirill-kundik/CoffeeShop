@@ -1,36 +1,4 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-var $header_cart_btn = $(".cart-button");
-var $header_cart = $("#cart_header");
-
-var show_header_cart = false;
-
-function init_header_cart() {
-    function hide_cart() {
-        show_header_cart = false;
-        setTimeout(function () {
-            if (!show_header_cart)
-                $header_cart.fadeOut(200);
-        }, 500);
-    }
-
-    $header_cart_btn.hover(function () {
-            show_header_cart = true;
-            $header_cart.fadeIn(200);
-        },
-        function () {
-            hide_cart();
-        });
-
-    $header_cart.hover(function () {
-        show_header_cart = true;
-        // $header_cart.fadeIn(200);
-    }, function () {
-        hide_cart();
-    });
-}
-
-exports.init_header_cart = init_header_cart;
-},{}],2:[function(require,module,exports){
 String.prototype.contains = function (substring) {
     return this.toLowerCase().indexOf(substring.toLowerCase()) !== -1;
 };
@@ -200,7 +168,44 @@ exports.initialiseCart = initialiseCart;
 exports.sizes = sizes;
 
 exports.getSum = getSum;
-},{"../Main/Templates":4,"./storage":3}],3:[function(require,module,exports){
+},{"../Main/Templates":4,"./storage":3}],2:[function(require,module,exports){
+var $flyout;
+
+var scrollCheck = function () {
+    // console.log(($(window).height() + $(this).scrollTop()) + ", " + ($(document).height() - 90));
+    if ($(window).height() + $(this).scrollTop() < $(document).height() - 90) {
+        $flyout.addClass('fixed');
+    } else {
+        $flyout.removeClass('fixed');
+    }
+};
+
+$(function () {
+    $flyout = $('.sum-panel');
+    $(window).scroll(function () {
+        scrollCheck();
+    });
+    $(window).resize(function () {
+        scrollCheck();
+    });
+    $(window).click(function () {
+        scrollCheck();
+    });
+
+
+
+    var CoffeeCart = require('../Cart/CoffeeCart');
+    CoffeeCart.initialiseCart();
+});
+
+$( window ).on( "load", function() {
+    // console.log( "window loaded" );
+    $flyout.removeClass("not-visible");
+    scrollCheck();
+});
+
+
+},{"../Cart/CoffeeCart":1}],3:[function(require,module,exports){
 var basil = require('basil.js');
 var storage = new basil();
 
@@ -211,7 +216,7 @@ exports.get = function (key) {
 exports.set = function (key, value) {
     return storage.set(key, value);
 }
-},{"basil.js":6}],4:[function(require,module,exports){
+},{"basil.js":5}],4:[function(require,module,exports){
 
 var ejs = require('ejs');
 
@@ -222,16 +227,7 @@ exports.Cart_OneItem = ejs.compile("<div class=\"item row\">\r\n    <img class=\
 exports.popup = ejs.compile("<div class=\"popup-message\">\r\n    <img class=\"icon\" src=\"assets/images/cart.png\">\r\n    <div class=\"text\"> <%= str %> </div>\r\n</div>");
 exports.empty_cart = ejs.compile("<div class=\"empty\">\r\n    <img src=\"assets/images/cart_empty.png\">\r\n    <h1 class=\"label-empty\">В кошику пусто</h1>\r\n    <div class=\"label-empty\">Схоже у Вас ще немає товарів у кошику</div>\r\n    <a class=\"to_menu\" href=\"/menu.html\">У меню</a>\r\n</div>");
 
-},{"ejs":8}],5:[function(require,module,exports){
-$(function () {
-    var CoffeeCart = require('../Cart/CoffeeCart');
-    var cartHeader = require('../Cart/CartHeader');
-
-    CoffeeCart.initialiseCart();
-    cartHeader.init_header_cart();
-});
-
-},{"../Cart/CartHeader":1,"../Cart/CoffeeCart":2}],6:[function(require,module,exports){
+},{"ejs":7}],5:[function(require,module,exports){
 (function () {
 	// Basil
 	var Basil = function (options) {
@@ -619,9 +615,9 @@ $(function () {
 
 })();
 
-},{}],7:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 
-},{}],8:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
 /*
  * EJS Embedded JavaScript templates
  * Copyright 2112 Matthew Eernisse (mde@fleegix.org)
@@ -1489,7 +1485,7 @@ if (typeof window != 'undefined') {
   window.ejs = exports;
 }
 
-},{"../package.json":10,"./utils":9,"fs":7,"path":11}],9:[function(require,module,exports){
+},{"../package.json":9,"./utils":8,"fs":6,"path":10}],8:[function(require,module,exports){
 /*
  * EJS Embedded JavaScript templates
  * Copyright 2112 Matthew Eernisse (mde@fleegix.org)
@@ -1655,7 +1651,7 @@ exports.cache = {
   }
 };
 
-},{}],10:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 module.exports={
   "_from": "ejs@^2.4.1",
   "_id": "ejs@2.5.7",
@@ -1736,7 +1732,7 @@ module.exports={
   "version": "2.5.7"
 }
 
-},{}],11:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 (function (process){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -1964,7 +1960,7 @@ var substr = 'ab'.substr(-1) === 'b'
 ;
 
 }).call(this,require('_process'))
-},{"_process":12}],12:[function(require,module,exports){
+},{"_process":11}],11:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 
@@ -2150,4 +2146,4 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}]},{},[5]);
+},{}]},{},[2]);
