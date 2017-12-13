@@ -8,7 +8,6 @@ html {
 
         .parallax {
             /* The image used */
-
             /* Set a specific height */
             height: 700px;
 
@@ -17,10 +16,16 @@ html {
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
+
+        }
+
+        .first-bg {
+
+            background-image: url("../../images/first_bg_small.jpg");
             .content {
 
                 position: absolute;
-                top: 275px;
+                top: 175px;
                 left: 200px;
 
                 .coffee {
@@ -43,14 +48,14 @@ html {
             }
         }
 
-        .first-bg {
-
-            background-image: url("../../images/first_bg_small.jpg");
-
-        }
-
         .first-content {
-
+            .outer {
+                a {
+                    position: absolute;
+                    left: 50%;
+                    transform: translateX(-50%);
+                }
+            }
             padding-top: 100px;
             padding-bottom: 100px;
             text-align: center;
@@ -74,7 +79,6 @@ html {
                 margin-left: 0;
                 margin-right: 0;
 
-
                 .item {
                     padding: 0 10px 0 10px;
                     .inner {
@@ -82,7 +86,6 @@ html {
                             max-width: 400px;
                             min-width: 400px;
                         }
-
 
                         display: inline-block;
 
@@ -100,6 +103,86 @@ html {
         .second-bg {
 
             background-image: url("../../images/second_bg.gif");
+
+        }
+
+        .second-content {
+
+            .content {
+                height: 1100px;
+                max-width: 1000px;
+                padding-left: 150px;
+                padding-right: 150px;
+
+                position: relative;
+                transform: translateX(-50%);
+                left: 50%;
+                .about {
+                    .text {
+                        padding-top: 75px;
+                        padding-left: 0;
+                        padding-right: 25px;
+                    }
+                    .photo {
+                        padding-left: 0;
+                        padding-right: 0;
+                        height: 550px;
+                        clear: right;
+                        img {
+                            width: auto;
+                            height: 550px;
+                        }
+                    }
+                }
+
+                .quality {
+                    .photo {
+                        padding-left: 0;
+                        padding-right: 0;
+                        height: 550px;
+                        position: relative;
+                        img {
+                            position: absolute;
+                            top: 0;
+                            right: 0;
+                            width: auto;
+                            height: 550px;
+                        }
+                    }
+                    .text {
+                        padding-left: 25px;
+                        padding-right: 0;
+                        padding-top: 75px;
+                    }
+                }
+            }
+        }
+
+        .third-bg {
+            background-image: url("../../images/third_bg.jpg");
+
+            .content {
+
+                position: absolute;
+                top: 175px;
+                right: 200px;
+                color: black;
+                font-weight: bold;
+
+                .coffee {
+
+                    font-size: 125px;
+                    text-align: center;
+
+                }
+
+                .description {
+
+                    font-size: 26px;
+                    text-align: center;
+
+                }
+            }
 
         }
     }

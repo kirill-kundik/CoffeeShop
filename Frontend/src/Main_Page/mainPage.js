@@ -4,4 +4,5 @@ $(function () {
 
     CoffeeCart.initialiseCart();
     cartHeader.init_header_cart();
+
 });
