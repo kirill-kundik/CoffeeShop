@@ -57,4 +57,107 @@ html {
             border: 0;
         }
     }
+
+    .mainpage-container {
+
+        width: 100%;
+        margin-top: @headerHeight;
+
+        .parallax {
+            /* The image used */
+            
+            /* Set a specific height */
+            height: 700px;
+
+            /* Create the parallax scrolling effect */
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+
+            transform: translate3d(0px, 0%/2, 0px);
+
+        }
+
+        .first-bg {
+
+            background-image: url("../../images/first_bg.jpg");
+
+            .content {
+
+                position: absolute;
+                top: 275px;
+                left: 200px;
+
+                .coffee {
+
+                    color: white;
+                    font-weight: bold;
+                    font-size: 72px;
+                    text-align: left;
+
+                }
+
+                .description {
+
+                    color: white;
+                    font-weight: bold;
+                    font-size: 22px;
+                    text-align: left;
+
+                }
+            }
+
+        }
+
+        .first-content {
+
+            padding-top: 50px;
+
+            text-align: center;
+            font-weight: bold;
+            color: black;
+
+            .content-header {
+
+                font-size: 36px;
+
+            }
+
+            .content {
+
+                margin-top: 350px;
+                font-size: 28px;
+                margin-left: 250px;
+                margin-right: 250px;
+                margin-bottom: 75px;
+
+                .coffee {
+
+                    display: inline-block;
+                    float: left;
+
+                }
+
+                .tea {
+
+                    display: inline-block;
+                    float: right;
+
+                }
+
+                .cocoa {
+                    display: inline-block;
+                }
+
+            }
+
+        }
+
+        .second-bg {
+
+            background-image: url("../../images/second_bg.gif");
+
+        }
+    }
 }
