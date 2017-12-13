@@ -32,3 +32,11 @@ exports.infoPage = function(req, res) {
         pageName: 'info'
     });
 };
+
+exports.aboutUsPage = function(req, res) {
+    res.render('aboutUsPage\\aboutUsPage', {
+        pageTitle: 'Про нас',
+        pageName: 'about'
+    });
+};
+
