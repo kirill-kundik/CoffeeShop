@@ -1,61 +1,44 @@
 @import "../common/common";
 
 .container-fluid.main-container {
-   padding: 80px 15px 0 15px;
+   padding: 150px 30px 0 30px;
 
-   .order-left-side {
-      .description-contact {
+   max-width: 1100px;
+
+   .form {
+      .description {
          font-size: 23px;
+         font-weight: 600;
          margin-bottom: 10px;
       }
 
-      .order-next-step {
-         margin: 15px 15px 0 0;
-         float: right;
-         .btn {
-            padding: 6px 30px;
-         }
-      }
-
       .control-label {
-         font-weight: 600;
+         padding-left: 40px;
+         text-align: left;
+         font-weight: 500;
+         font-size: 18px;
       }
+   }
+
+   .order-info {
+      padding-top: 50px;
+   }
+
+   .order-next-step {
+      margin-top: 20px;
+      float: left;
+      .btn {
+         padding: 6px 30px;
+      }
+   }
+
+   #google-maps {
+      background: black;
+      right: 0;
+      position: relative;
+      height: 200px;
+      width: 500px;
    }
 }
 
-.bs-callout {
-   padding: 30px;
-   margin: 0;
-   border: 1px solid #eee;
-   border-left-width: 5px;
-   border-radius: 3px;
-   background-color: white;
-}
 
-.bs-callout h4 {
-   margin-top: 0;
-   margin-bottom: 10px;
-}
-
-.bs-callout p:last-child {
-   margin-bottom: 0;
-}
-
-.bs-callout-warning {
-   border-left-color: #f0ad4e;
-}
-
-.bs-callout-warning h4 {
-   color: #f0ad4e;
-}
-
-#edit_order {
-   background: @colorWindowBackground;
-   border-color: #b8b8b8;
-   color: #5b5b5b;
-}
-
-#google-maps {
-   height: 300px;
-   margin: 15px 15px 25px 15px;
-}
