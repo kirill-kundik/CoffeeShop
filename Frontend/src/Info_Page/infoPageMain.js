@@ -6,4 +6,6 @@ $(function() {
 
     CoffeeCart.initialiseCart();
     cart.init_header_cart();
+
+    var GoogleMaps = require('../GoogleMaps');
 });
