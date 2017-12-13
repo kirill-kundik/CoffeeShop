@@ -86,19 +86,8 @@ var coffee_info = [
             volume: 450,
             price: 25
         }
-    },{
+    }, {
         id: 7,
-        icon: 'assets/images/sahar.png',
-        title: "Цукор",
-        type: 'Солодке',
-
-        small_size: {
-            volume: 200,
-            price: 10
-        },
-        notLiquid: true
-    },{
-        id: 8,
         icon: 'assets/images/peppermint_cocoa.png',
         title: "М'ятне какао",
         type: 'Какао',
@@ -112,7 +101,7 @@ var coffee_info = [
             price: 22
         }
     },{
-        id: 9,
+        id: 8,
         icon: 'assets/images/salted_caramel_cocoa.png',
         title: "Солона карамель",
         type: 'Какао',
@@ -126,7 +115,7 @@ var coffee_info = [
             price: 22
         }
     },{
-        id: 10,
+        id: 9,
         icon: 'assets/images/snickerdoodle_hot_cocoa.png',
         title: "Какао з корицею",
         type: 'Какао',
@@ -140,7 +129,7 @@ var coffee_info = [
             price: 34
         }
     },{
-        id: 11,
+        id: 10,
         icon: 'assets/images/zapekanka.png',
         title: "Творожна запіканка",
         type: 'Десерт',
@@ -152,7 +141,7 @@ var coffee_info = [
         
         notLiquid: true
     },{
-        id: 12,
+        id: 11,
         icon: 'assets/images/rulet_limon.png',
         title: "Лимонний рулет",
         type: 'Десерт',
@@ -164,7 +153,7 @@ var coffee_info = [
         
         notLiquid: true
     },{
-        id: 13,
+        id: 12,
         icon: 'assets/images/medovik.png',
         title: "Торт Медовик",
         type: 'Десерт',
@@ -176,7 +165,7 @@ var coffee_info = [
         
         notLiquid: true
     },{
-        id: 14,
+        id: 13,
         icon: 'assets/images/cheesecake.png',
         title: "Чизкейк",
         type: 'Десерт',
@@ -188,16 +177,16 @@ var coffee_info = [
         
         notLiquid: true
     },{
-        id: 15,
+        id: 14,
         icon: 'assets/images/chocolate_tart.png',
         title: "Шоколадний Тарт",
         type: 'Десерт',
-        
+
         middle_size: {
             volume: 220,
             price: 69
         },
-        
+
         notLiquid: true
     }
 ];

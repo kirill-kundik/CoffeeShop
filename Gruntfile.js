@@ -40,7 +40,7 @@ module.exports = function(grunt) {
 
             infoPage: {
                 src:        'Frontend/src/Info_Page/infoPageMain.js',
-                dest:       'Frontend/www/assets/js/Page.infoPage.js'
+                dest:       'Frontend/www/assets/js/infoPage.js'
             }
         }
     };

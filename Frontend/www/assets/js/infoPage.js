@@ -211,49 +211,18 @@ exports.get = function (key) {
 exports.set = function (key, value) {
     return storage.set(key, value);
 }
-},{"basil.js":9}],4:[function(require,module,exports){
-/**
- * Created by chaika on 09.02.16.
- */
-var API_URL = "http://localhost:5050";
+},{"basil.js":6}],4:[function(require,module,exports){
+$(function() {
+    $('#contacts-button').addClass('selected');
 
-function backendGet(url, callback) {
-    $.ajax({
-        url: API_URL + url,
-        type: 'GET',
-        success: function (data) {
-            callback(null, data);
-        },
-        error: function () {
-            callback(new Error("Ajax Failed"));
-        }
-    })
-}
+    var CoffeeCart = require('../Cart/CoffeeCart');
+    var cart = require('../Cart/CartHeader');
 
-function backendPost(url, data, callback) {
-    $.ajax({
-        url: API_URL + url,
-        type: 'POST',
-        contentType: 'application/json',
-        data: JSON.stringify(data),
-        success: function (data) {
-            callback(null, data);
-        },
-        error: function () {
-            callback(new Error("Ajax Failed"));
-        }
-    })
-}
+    CoffeeCart.initialiseCart();
+    cart.init_header_cart();
+});
 
-exports.getList = function (callback) {
-    backendGet("/api/get-list/", callback);
-};
-
-exports.createOrder = function (order_info, callback) {
-    backendPost("/api/create-order/", order_info, callback);
-};
-
-},{}],5:[function(require,module,exports){
+},{"../Cart/CartHeader":1,"../Cart/CoffeeCart":2}],5:[function(require,module,exports){
 
 var ejs = require('ejs');
 
@@ -264,137 +233,7 @@ exports.Cart_OneItem = ejs.compile("<div class=\"item row\">\r\n    <img class=\
 exports.popup = ejs.compile("<div class=\"popup-message\">\r\n    <img class=\"icon\" src=\"assets/images/cart.png\">\r\n    <div class=\"text\"> <%= str %> </div>\r\n</div>");
 exports.empty_cart = ejs.compile("<div class=\"empty\">\r\n    <img src=\"assets/images/cart_empty.png\">\r\n    <h1 class=\"label-empty\">В кошику пусто</h1>\r\n    <div class=\"label-empty\">Схоже у Вас ще немає товарів у кошику</div>\r\n    <a class=\"to_menu\" href=\"/menu.html\">У меню</a>\r\n</div>");
 
-},{"ejs":11}],6:[function(require,module,exports){
-var Templates = require('./Templates');
-var $parent = $("#popups");
-
-function new_popup(str) {
-    var html_code = Templates.popup({str: str});
-    var $node = $(html_code);
-
-    $parent.append($node);
-    $node.fadeIn("fast");
-    $node.addClass('slide-up');
-    setTimeout(function () {
-        $node.removeClass('slide-up');
-        $node.fadeOut("fast", function () {
-            $node.remove();
-        });
-    }, 2000);
-}
-
-exports.new_popup = new_popup;
-},{"./Templates":5}],7:[function(require,module,exports){
-var Templates = require('../Main/Templates');
-var CoffeeCart = require('../Cart/CoffeeCart');
-var popup = require('../Main/popup');
-
-var api = require('../FrontendAPI');
-var Items_List;
-
-//HTML едемент куди будуть додаватися піци
-var $items_list = $("#items_list");
-
-function showList(list) {
-    //Очищаємо старі піци в кошику
-    $items_list.html("");
-
-    //Онволення однієї піци
-    function showOneItem(item) {
-        var html_code = Templates.Menu_OneItem({item: item});
-
-        var $node = $(html_code);
-
-        $node.find(".add-big").click(function () {
-            CoffeeCart.addToCart(item, CoffeeCart.sizes.Big);
-            popup.new_popup(item.title + " великий");
-        });
-        $node.find(".add-middle").click(function () {
-            CoffeeCart.addToCart(item, CoffeeCart.sizes.Middle);
-            popup.new_popup(item.title + " середній");
-        });
-        $node.find(".add-small").click(function () {
-            CoffeeCart.addToCart(item, CoffeeCart.sizes.Small);
-            popup.new_popup(item.title + " маленький");
-        });
-
-        $items_list.append($node);
-    }
-
-    list.forEach(showOneItem);
-}
-
-function filter(filters, negative_filters) {
-    var items_shown = [];
-
-    Items_List.forEach(function (item) {
-
-        var add = true;
-        negative_filters.forEach(function (t) {
-            if (item.type === t) {
-                add = false;
-            }
-        });
-
-        if (add) {
-            add = true;
-            filters.forEach(function (t) {
-                if (item.type !== t) {
-                    add = false;
-                }
-            });
-            if (add)
-                items_shown.push(item);
-        }
-    });
-
-    //Показати відфільтровані піци
-    showList(items_shown);
-}
-
-function initialiseMenu() {
-    $('#menu-button').addClass('selected');
-    //document.getElementById('contacts-button').href = '/';
-
-    api.getList(function (err, data) {
-        Items_List = data;
-        showList(Items_List);
-    });
-
-    $('#type1').click(function () {
-        showList(Items_List);
-    });
-    $('#type2').click(function () {
-        filter(['Кава'], []);
-    });
-    $('#type3').click(function () {
-        filter(['Какао'], []);
-    });
-    $('#type4').click(function () {
-        filter(['Чай'], []);
-    });
-    $('#type5').click(function () {
-        filter([], ['Кава', 'Чай', 'Десерт', 'Какао']);
-    });
-    $('#type6').click(function () {
-        filter(['Десерт'], []);
-    });
-}
-
-exports.filterPizza = filter;
-exports.initialiseMenu = initialiseMenu;
-},{"../Cart/CoffeeCart":2,"../FrontendAPI":4,"../Main/Templates":5,"../Main/popup":6}],8:[function(require,module,exports){
-$(function(){
-    var CoffeeMenu = require('./CoffeeMenu');
-    var CoffeeCart = require('../Cart/CoffeeCart');
-    var cart = require('../Cart/CartHeader');
-
-    CoffeeCart.initialiseCart();
-    CoffeeMenu.initialiseMenu();
-    cart.init_header_cart();
-});
-
-},{"../Cart/CartHeader":1,"../Cart/CoffeeCart":2,"./CoffeeMenu":7}],9:[function(require,module,exports){
+},{"ejs":8}],6:[function(require,module,exports){
 (function () {
 	// Basil
 	var Basil = function (options) {
@@ -782,9 +621,9 @@ $(function(){
 
 })();
 
-},{}],10:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
 
-},{}],11:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 /*
  * EJS Embedded JavaScript templates
  * Copyright 2112 Matthew Eernisse (mde@fleegix.org)
@@ -1652,7 +1491,7 @@ if (typeof window != 'undefined') {
   window.ejs = exports;
 }
 
-},{"../package.json":13,"./utils":12,"fs":10,"path":14}],12:[function(require,module,exports){
+},{"../package.json":10,"./utils":9,"fs":7,"path":11}],9:[function(require,module,exports){
 /*
  * EJS Embedded JavaScript templates
  * Copyright 2112 Matthew Eernisse (mde@fleegix.org)
@@ -1818,7 +1657,7 @@ exports.cache = {
   }
 };
 
-},{}],13:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 module.exports={
   "_from": "ejs@^2.4.1",
   "_id": "ejs@2.5.7",
@@ -1899,7 +1738,7 @@ module.exports={
   "version": "2.5.7"
 }
 
-},{}],14:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 (function (process){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -2127,7 +1966,7 @@ var substr = 'ab'.substr(-1) === 'b'
 ;
 
 }).call(this,require('_process'))
-},{"_process":15}],15:[function(require,module,exports){
+},{"_process":12}],12:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 
@@ -2313,4 +2152,4 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}]},{},[8]);
+},{}]},{},[4]);
