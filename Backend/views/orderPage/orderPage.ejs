@@ -2,89 +2,94 @@
 
 
 <div class="main-container container-fluid">
-    <div class="form contact-info">
-        <div class="description">
-            1. Контактні дані
-        </div>
-        <div class="row">
-            <div class="col-xs-7">
-                <div class="form-horizontal">
-                    <div class="form-group" id="nameGroup">
-                        <div class="col-xs-3 control-label">
-                            • Ім'я
-                        </div>
-                        <div class="col-xs-9">
-                            <input class="form-control" type="text" id="inputName" placeholder="Ім'я">
-                            <span class="help-block" id="error-name">Введіть тільки власне ім’я, без цифр,
+    <div class="left-side col-xs-6">
+        <div class="form contact-info">
+            <div class="description">
+                1. Контактні дані
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="form-horizontal">
+                        <div class="form-group" id="nameGroup">
+                            <div class="col-xs-5 control-label">
+                                Ім'я
+                            </div>
+                            <div class="col-xs-7">
+                                <input class="form-control" type="text" id="inputName" placeholder="Ім'я">
+                                <span class="help-block" id="error-name">Введіть тільки власне ім’я, без цифр,
                                     максимум 30 символів</span>
+                            </div>
+
                         </div>
 
-                    </div>
-
-                    <div class="form-group" id="phoneGroup">
-                        <div class="col-xs-3 control-label">
-                            • Телефон
-                        </div>
-                        <div class="col-xs-9">
-                            <input class="form-control" type="text" id="inputPhone" placeholder="+380123456789">
-                            <div class="help-block" id="error-phone">Введіть номер телефону у форматі +380 або почніть з
-                                0
+                        <div class="form-group" id="phoneGroup">
+                            <div class="col-xs-5 control-label">
+                                Телефон
+                            </div>
+                            <div class="col-xs-7">
+                                <input class="form-control" type="text" id="inputPhone" placeholder="+380123456789">
+                                <div class="help-block" id="error-phone">Введіть номер телефону у форматі +380 або
+                                    почніть з
+                                    0
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="form order-info">
-        <div class="description">
-            2. Інформація щодо замовлення
-        </div>
-        <div class="row">
-            <div class='col-xs-7'>
-                <div class="form-horizontal">
-                    <div class="form-group">
-                        <div class="col-xs-8 control-label">
-                            • Час, коли ви прийдете за замовленням
-                        </div>
-                        <div class="col-xs-4">
-                            <div class='input-group date' id='datetimepicker3'>
-                                <input type='text' class="form-control" placeholder="--:--">
-                                <span class="input-group-addon">
+        <div class="form order-info">
+            <div class="description">
+                2. Інформація щодо замовлення
+            </div>
+            <div class="row">
+                <div class='col-xs-12'>
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <div class="col-xs-8 control-label">
+                                Час, коли ви прийдете за замовленням
+                            </div>
+                            <div class="col-xs-4">
+                                <div class='input-group date' id='datetimepicker3'>
+                                    <input type='text' class="form-control" placeholder="--:--">
+                                    <span class="input-group-addon">
                                 <span class="glyphicon glyphicon-time"></span>
                             </span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-xs-4 control-label">
-                            • Виберіть заклад:
+                        <div class="form-group">
+                            <div class="col-xs-4 control-label">
+                                Виберіть заклад:
+                            </div>
+                            <div class="col-xs-8">
+                                <select class="form-control" id="sel1">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                </select>
+                            </div>
                         </div>
-                        <div class="col-xs-8">
-                            <select class="form-control" id="sel1">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                            </select>
-                        </div>
-                    </div>
 
+                    </div>
                 </div>
             </div>
         </div>
+
+
+        <div class="order-next-step">
+            <a id="order-next" class="btn btn-default">
+                Далі
+                <i class="glyphicon glyphicon-chevron-right icon-white"></i>
+            </a>
+        </div>
     </div>
 
-
-    <div class="order-next-step">
-        <a id="order-next" class="btn btn-default">
-            Далі
-            <i class="glyphicon glyphicon-chevron-right icon-white"></i>
-        </a>
+    <div class="right-side col-xs-6">
+        <div id="google-maps">googleMaps here</div>
     </div>
-
-    <div id="google-maps">googleMaps here</div>
 </div>
 
 <div id="liqpay"></div>

@@ -84,8 +84,9 @@ html {
                     padding: 0 10px 0 10px;
                     .inner {
                         img {
-                            max-width: 400px;
-                            min-width: 400px;
+                            max-width: 100%;
+                            //max-width: 400px;
+                            //min-width: 400px;
                         }
 
                         display: inline-block;
@@ -111,26 +112,33 @@ html {
 
             .content {
                 height: 1100px;
-                max-width: 1000px;
-                padding-left: 150px;
-                padding-right: 150px;
+                //max-width: 1000px;
+                //padding-left: 150px;
+                //padding-right: 150px;
 
                 position: relative;
                 transform: translateX(-50%);
                 left: 50%;
                 .about {
+                    padding: 0;
                     .text {
-                        padding-top: 75px;
-                        padding-left: 0;
-                        padding-right: 25px;
+                        .inner-text {
+                            float: right;
+
+                            max-width: 400px;
+                            padding-top: 75px;
+                            padding-left: 0;
+                            padding-right: 25px;
+                        }
                     }
                     .photo {
                         padding-left: 0;
                         padding-right: 0;
                         height: 550px;
                         position: relative;
+                        overflow-x: hidden;
                         img {
-                            max-width: 759px;
+                            //max-width: 759px;
                             position: absolute;
                             top: 0;
                             left: 0;
@@ -155,9 +163,14 @@ html {
                         }
                     }
                     .text {
-                        padding-left: 25px;
-                        padding-right: 0;
-                        padding-top: 75px;
+                        .inner-text {
+                            float: left;
+
+                            max-width: 400px;
+                            padding-top: 75px;
+                            padding-left: 25px;
+                            padding-right: 0;
+                        }
                     }
                 }
             }
