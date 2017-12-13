@@ -31,6 +31,16 @@ module.exports = function(grunt) {
             cartPage: {
                 src:        'Frontend/src/Cart/cartPageMain.js',
                 dest:       'Frontend/www/assets/js/cartPage.js'
+            },
+
+            orderPage: {
+                src:        'Frontend/src/Order_Page/orderPageMain.js',
+                dest:       'Frontend/www/assets/js/orderPage.js'
+            },
+
+            infoPage: {
+                src:        'Frontend/src/Info_Page/infoPageMain.js',
+                dest:       'Frontend/www/assets/js/Page.infoPage.js'
             }
         }
     };
@@ -45,7 +55,8 @@ module.exports = function(grunt) {
             //На зміни в яких файлах реагувати
             files: ['Frontend/src/**/*.js', 'Frontend/**/*.ejs'],
             //Які завдання виконувати під час зміни в файлах
-            tasks: ['browserify:menu', 'browserify:mainPage', 'browserify:cartPage']
+            tasks: ['browserify:menu', 'browserify:mainPage', 'browserify:cartPage', 'browserify:orderPage',
+                'browserify:infoPage']
         }
     };
 
@@ -64,7 +75,9 @@ module.exports = function(grunt) {
         [
             'browserify:menu',
             'browserify:mainPage',
-            'browserify:cartPage'
+            'browserify:cartPage',
+            'browserify:orderPage',
+            'browserify:infoPage'
             //Інші завдання які необхідно виконати
         ]
     );

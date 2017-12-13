@@ -16,11 +16,13 @@ function configureEndpoints(app) {
     //Головна сторінка
     app.get('/', pages.mainPage);
 
-    //Сторінка замовлення
     app.get('/menu.html', pages.menuPage);
 
-    //Сторінка замовлення
     app.get('/cart.html', pages.cartPage);
+
+    app.get('/order.html', pages.orderPage);
+
+    app.get('/info.html', pages.infoPage);
 
     //Якщо не підійшов жоден url, тоді повертаємо файли з папки www
     app.use(express.static(path.join(__dirname, '../Frontend/www')));

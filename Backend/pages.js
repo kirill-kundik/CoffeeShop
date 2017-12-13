@@ -18,3 +18,17 @@ exports.cartPage = function(req, res) {
         pageName: 'cart'
     });
 };
+
+exports.orderPage = function(req, res) {
+    res.render('orderPage\\orderPage', {
+        pageTitle: 'Замовлення',
+        pageName: 'order'
+    });
+};
+
+exports.infoPage = function(req, res) {
+    res.render('infoPage\\infoPage', {
+        pageTitle: 'Заклади',
+        pageName: 'info'
+    });
+};

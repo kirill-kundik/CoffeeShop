@@ -14,6 +14,10 @@
     <link rel="stylesheet/less" type="text/css" href="assets/less/menu/menuMain.less"/>
     <% } else if(pageName === 'cart') {%>
     <link rel="stylesheet/less" type="text/css" href="assets/less/cart/cartPageMain.less"/>
+    <% } else if(pageName === 'order') {%>
+    <link rel="stylesheet/less" type="text/css" href="assets/less/order/orderPageMain.less"/>
+    <% } else if(pageName === 'info') {%>
+    <link rel="stylesheet/less" type="text/css" href="assets/less/info/infoPageMain.less"/>
     <% } %>
     <!-- LESS JavaScript компілятор -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
@@ -45,7 +49,7 @@
             •
         </div>
 
-        <% if(pageName !== 'cart') { %>
+        <% if(pageName !== 'cart' && pageName !== 'order') { %>
         <a class="cart-button" href="/cart.html">
             <img class="cart-img" src="assets/images/cart.png">
             <div class="items-count"></div>
