@@ -229,6 +229,7 @@ $(function () {
 
     CoffeeCart.initialiseCart();
     cartHeader.init_header_cart();
+
 });
 
 },{"../Cart/CartHeader":1,"../Cart/CoffeeCart":2}],6:[function(require,module,exports){
