@@ -3,7 +3,7 @@ String.prototype.contains = function (substring) {
 };
 
 var Templates = require('../Main/Templates');
-var cart_key = "cart_key";
+var cart_key = "coffee_cart_key";
 var storage = require("./storage");
 
 var sizes = {
