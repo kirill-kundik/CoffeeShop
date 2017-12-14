@@ -1,12 +1,21 @@
-
 <footer>
-    <div class="left-side-footer">
+    <div class="left-side-footer col-xs-6">
         КАВ'ЯРНЯ - це учбовий проект в рамках курсу НаУКМА.
         <br>
         Кав'ярень не існує, платежі не приймаються.
     </div>
-    <div class="right-side-footer">
-
+    <div class="right-side-footer col-xs-6">
+        Ми в соціальних мережах.
+        <div class="social-networks">
+            <a href="https://www.facebook.com" target="_blank" style="padding-right: 15px"><img
+                        src="assets/images/facebook.png" width="30" height="30"></a>
+            <a href="https://www.twitter.com" target="_blank" style="padding-right: 15px"><img
+                        src="assets/images/twitter.png" width="30" height="30"></a>
+            <a href="https://www.instagram.com/kirill_kundik" target="_blank" style="padding-right: 15px"><img
+                        src="assets/images/insta.png" width="30" height="30"></a>
+            <a href="https://www.telegram.org" target="_blank"><img
+                        src="assets/images/telegram.png" width="30" height="30"></a>
+        </div>
     </div>
 </footer>
 
@@ -19,9 +28,9 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 <!--Own JavaScript -->
-<% if(pageName === 'main') {%>
+<% if(pageName === 'main') { %>
 <script type="text/javascript" src="assets/js/mainPage.js"></script>
-<% } else if(pageName === 'menu') {%>
+<% } else if(pageName === 'menu') { %>
 <script type="text/javascript" src="assets/js/mainMenu.js"></script>
 <% } else if(pageName === 'cart') { %>
 <script type="text/javascript" src="assets/js/cartPage.js"></script>
