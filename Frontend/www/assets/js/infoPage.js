@@ -265,6 +265,7 @@ var map;
 var center;
 var homeMarker;
 var directionsDisplay;
+var markers = [];
 
 function initialize() {
 
@@ -286,6 +287,7 @@ function initialize() {
     });
 
     init_markers();
+    google.maps.event.addListener(map, 'click', find_closest_marker);
 
     // addMarker(center.lat(), center.lng());
 
@@ -356,10 +358,12 @@ function addMarker(lat, lng, name) {
         setCenter(lat, lng);
         $('#shop-list').val(name);
     });
+
+    markers.push(marker);
 }
 
 function setCenter(lat, lng) {
-    map.setCenter({lat:lat, lng:lng});
+    map.setCenter({lat: lat, lng: lng});
     map.setZoom(15);
 }
 
@@ -436,6 +440,9 @@ function geocodeAddress(address, callback) {
 function calculateRoute(A_latlng, B_latlng, callback) {
 
     var directionsService = new google.maps.DirectionsService();
+    var directionsDisplay = new google.maps.DirectionsRenderer({ polylineOptions: { strokeColor: "#332b29" } });
+    directionsDisplay.setMap(map);
+    directionsDisplay.setOptions({ suppressMarkers: true });
 
     directionsService.route({
         origin: A_latlng,
@@ -459,6 +466,53 @@ function calculateRoute(A_latlng, B_latlng, callback) {
 
         }
     });
+}
+
+function rad(x) {
+    return x * Math.PI / 180;
+}
+
+function find_closest_marker(event) {
+    var lat = event.latLng.lat();
+    var lng = event.latLng.lng();
+    var R = 6371; // radius of earth in km
+    var distances = [];
+    var closest = -1;
+    for (i = 0; i < markers.length; i++) {
+        var mlat = markers[i].position.lat();
+        var mlng = markers[i].position.lng();
+        var dLat = rad(mlat - lat);
+        var dLong = rad(mlng - lng);
+        var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+            Math.cos(rad(lat)) * Math.cos(rad(lat)) * Math.sin(dLong / 2) * Math.sin(dLong / 2);
+        var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        var d = R * c;
+        distances[i] = d;
+        if (closest == -1 || d < distances[closest]) {
+            closest = i;
+        }
+    }
+
+    var marker = new google.maps.Marker({
+        position: event.latLng,
+        map: map,
+        icon: {
+            url: "assets/images/home-icon.png",
+            anchor: new google.maps.Point(30, 30)
+        },
+        title: "You're here!"
+    });
+
+    calculateRoute(event.latLng, markers[closest].position, function (err, data) {
+
+        if (!err)
+            console.log("norm");
+        // $(".order-time").text(data.duration.text);
+        else
+            console.log(err);
+
+    });
+    // alert(markers[closest].title);
 }
 
 // google.maps.event.addDomListener(window, 'load', initialize);
@@ -1919,29 +1973,34 @@ exports.cache = {
 
 },{}],12:[function(require,module,exports){
 module.exports={
-  "_from": "ejs@^2.4.1",
+  "_args": [
+    [
+      "ejs@2.5.7",
+      "C:\\Users\\golia\\Documents\\GitHub\\CoffeeShop"
+    ]
+  ],
+  "_from": "ejs@2.5.7",
   "_id": "ejs@2.5.7",
   "_inBundle": false,
   "_integrity": "sha1-zIcsFoiArjxxiXYv1f/ACJbJUYo=",
   "_location": "/ejs",
   "_phantomChildren": {},
   "_requested": {
-    "type": "range",
+    "type": "version",
     "registry": true,
-    "raw": "ejs@^2.4.1",
+    "raw": "ejs@2.5.7",
     "name": "ejs",
     "escapedName": "ejs",
-    "rawSpec": "^2.4.1",
+    "rawSpec": "2.5.7",
     "saveSpec": null,
-    "fetchSpec": "^2.4.1"
+    "fetchSpec": "2.5.7"
   },
   "_requiredBy": [
     "/"
   ],
   "_resolved": "https://registry.npmjs.org/ejs/-/ejs-2.5.7.tgz",
-  "_shasum": "cc872c168880ae3c7189762fd5ffc00896c9518a",
-  "_spec": "ejs@^2.4.1",
-  "_where": "C:\\Users\\Maxim\\Documents\\GitHub\\CoffeeShop",
+  "_spec": "2.5.7",
+  "_where": "C:\\Users\\golia\\Documents\\GitHub\\CoffeeShop",
   "author": {
     "name": "Matthew Eernisse",
     "email": "mde@fleegix.org",
@@ -1950,7 +2009,6 @@ module.exports={
   "bugs": {
     "url": "https://github.com/mde/ejs/issues"
   },
-  "bundleDependencies": false,
   "contributors": [
     {
       "name": "Timothy Gu",
@@ -1959,7 +2017,6 @@ module.exports={
     }
   ],
   "dependencies": {},
-  "deprecated": false,
   "description": "Embedded JavaScript templates",
   "devDependencies": {
     "browserify": "^13.0.1",
