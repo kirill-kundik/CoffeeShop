@@ -9,12 +9,13 @@ var center;
 var homeMarker;
 var directionsDisplay;
 var markers = [];
+var content;
 
 var marker_home = null;
 
 function initialize() {
 
-    directionsDisplay = new google.maps.DirectionsRenderer({ polylineOptions: { strokeColor: "#332b29" } });
+    directionsDisplay = new google.maps.DirectionsRenderer({polylineOptions: {strokeColor: "#332b29"}});
 
     center = new google.maps.LatLng(50.464379, 30.519131);
 
@@ -203,7 +204,8 @@ function calculateRoute(A_latlng, B_latlng, callback) {
             directionsDisplay.setDirections(response);
 
             callback(null, {
-                duration: varleg.duration
+                duration: varleg.duration,
+                distance: varleg.distance
             });
 
         } else {
@@ -239,7 +241,7 @@ function find_closest_marker(event) {
         }
     }
 
-    if(marker_home === null) {
+    if (marker_home === null) {
         marker_home = new google.maps.Marker({
             position: event.latLng,
             map: map,
@@ -253,10 +255,19 @@ function find_closest_marker(event) {
         marker_home.setPosition(event.latLng);
     }
 
+    content = "<p>Найближче до Вас кафе '" + markers[closest].title + "', це всього за ";
+
     calculateRoute(event.latLng, markers[closest].position, function (err, data) {
 
         if (err)
             console.log(err);
+        else {
+            content += data.distance.text + ", а це " + data.duration.text + " на машині.</p>";
+            var infowindow = new google.maps.InfoWindow({
+                content: content
+            });
+            infowindow.open(map, marker_home);
+        }
     });
     // alert(markers[closest].title);
 }
