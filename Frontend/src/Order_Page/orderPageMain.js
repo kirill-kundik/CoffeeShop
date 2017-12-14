@@ -8,9 +8,17 @@ $(function () {
     var regex = require('./regex');
     var api = require('../FrontendAPI');
     var googleMap = require('../GoogleMaps');
+    var liqPay = require('./LiqPay');
 
     regex.initializeRegex();
     googleMap.initialize();
+    $('#order-next').click(function () {
+        if (regex.validateName() && regex.validatePhone()) {
+            liqPay.initLiqPay();
+        }
+    });
+
+
 
     var $shop_list = $('#shop-list');
     $shop_list.text("");

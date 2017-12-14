@@ -45,3 +45,5 @@ function validatePhone() {
 }
 
 exports.initializeRegex = initializeRegex;
+exports.validatePhone = validatePhone;
+exports.validateName = validateName;

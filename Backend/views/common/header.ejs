@@ -15,21 +15,25 @@
     <% } else if(pageName === 'cart') { %>
     <link rel="stylesheet/less" type="text/css" href="assets/less/cart/cartPageMain.less"/>
     <% } else if(pageName === 'order') { %>
+    <!--Liq Pay-->
+    <script	src="//static.liqpay.com/libjs/checkout.js"></script>
+
+    <!--GOOGLE MAPS -->
+    <script type="text/javascript"
+            src="http://maps.googleapis.com/maps/api/js?key=AIzaSyB-TZ12vi38BRxcnXm83S16V3nRV6X7cJM"></script>
+
     <link rel="stylesheet/less" type="text/css" href="assets/less/order/orderPageMain.less"/>
     <% } else if(pageName === 'info') { %>
+    <!--GOOGLE MAPS -->
+    <script type="text/javascript"
+            src="http://maps.googleapis.com/maps/api/js?key=AIzaSyB-TZ12vi38BRxcnXm83S16V3nRV6X7cJM"></script>
+
     <link rel="stylesheet/less" type="text/css" href="assets/less/info/infoPageMain.less"/>
     <% } else if(pageName === 'about') { %>
     <link rel="stylesheet/less" type="text/css" href="assets/less/about/aboutPageMain.less"/>
     <% } %>
     <!-- LESS JavaScript компілятор -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
-
-
-    <!--GOOGLE MAPS -->
-    <script type="text/javascript"
-            src="http://maps.googleapis.com/maps/api/js?key=AIzaSyB-TZ12vi38BRxcnXm83S16V3nRV6X7cJM"></script>
-
-    <!--<script	src="//static.liqpay.com/libjs/checkout.js"></script>-->
 
     <link rel="shortcut icon" type="image/x-icon"
           href="http://download.seaicons.com/download/i6357/cute-little-factory/breakfast/cute-little-factory-breakfast-coffee-cup.ico"/>
