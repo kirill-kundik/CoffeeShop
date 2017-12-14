@@ -72,6 +72,8 @@ function initialize() {
         suppressMarkers: true
     });
 
+    init_markers();
+
     // addMarker(center.lat(), center.lng());
 
     // var marker = new google.maps.Marker({
@@ -134,6 +136,18 @@ function addMarker(lat, lng) {
             url: "assets/images/map-icon.png",
             anchor: new google.maps.Point(30, 30)
         }
+    });
+}
+
+
+function init_markers() {
+    var api = require('./FrontendAPI');
+
+    api.getShops(function (err, data) {
+        // console.log(shops_list);
+        data.forEach(function (t) {
+            addMarker(t.lat, t.lng);
+        });
     });
 }
 
@@ -228,8 +242,8 @@ function calculateRoute(A_latlng, B_latlng, callback) {
 exports.geocodeAddress = geocodeAddress;
 exports.calculateRoute = calculateRoute;
 exports.initialize = initialize;
-exports.addMarker = addMarker;
-},{}],3:[function(require,module,exports){
+// exports.addMarker = addMarker;
+},{"./FrontendAPI":1}],3:[function(require,module,exports){
 var shops_list = [];
 
 $(function () {
@@ -244,20 +258,15 @@ $(function () {
     regex.initializeRegex();
     googleMap.initialize();
 
+    var $shop_list = $('#shop-list');
+    $shop_list.text("");
+
     api.getShops(function (err, data) {
         shops_list = data;
-        // console.log(shops_list);
         shops_list.forEach(function (t) {
-            googleMap.addMarker(t.lat, t.lng);
+            $shop_list.append("<option>"+t.name+"</option>");
         });
     });
-});
-
-$(window).on("load", function () {
-
-
-    console.log(shops_list);
-
 });
 
 

@@ -200,7 +200,7 @@ exports.initialiseCart = initialiseCart;
 exports.sizes = sizes;
 
 exports.getSum = getSum;
-},{"../Main/Templates":6,"./storage":3}],3:[function(require,module,exports){
+},{"../Main/Templates":7,"./storage":3}],3:[function(require,module,exports){
 var basil = require('basil.js');
 var storage = new basil();
 
@@ -211,7 +211,50 @@ exports.get = function (key) {
 exports.set = function (key, value) {
     return storage.set(key, value);
 }
-},{"basil.js":7}],4:[function(require,module,exports){
+},{"basil.js":8}],4:[function(require,module,exports){
+var API_URL = "http://localhost:5050";
+
+function backendGet(url, callback) {
+    $.ajax({
+        url: API_URL + url,
+        type: 'GET',
+        success: function (data) {
+            callback(null, data);
+        },
+        error: function () {
+            callback(new Error("Ajax Failed"));
+        }
+    })
+}
+
+function backendPost(url, data, callback) {
+    $.ajax({
+        url: API_URL + url,
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify(data),
+        success: function (data) {
+            callback(null, data);
+        },
+        error: function () {
+            callback(new Error("Ajax Failed"));
+        }
+    })
+}
+
+exports.getList = function (callback) {
+    backendGet("/api/get-list/", callback);
+};
+
+exports.getShops = function (callback) {
+    backendGet("/api/get-shops/", callback);
+};
+
+exports.createOrder = function (order_info, callback) {
+    backendPost("/api/create-order/", order_info, callback);
+};
+
+},{}],5:[function(require,module,exports){
 /**
  * created by Kirill on 3.12.2017
  */
@@ -241,6 +284,8 @@ function initialize() {
     directionsDisplay.setOptions({
         suppressMarkers: true
     });
+
+    init_markers();
 
     // addMarker(center.lat(), center.lng());
 
@@ -304,6 +349,18 @@ function addMarker(lat, lng) {
             url: "assets/images/map-icon.png",
             anchor: new google.maps.Point(30, 30)
         }
+    });
+}
+
+
+function init_markers() {
+    var api = require('./FrontendAPI');
+
+    api.getShops(function (err, data) {
+        // console.log(shops_list);
+        data.forEach(function (t) {
+            addMarker(t.lat, t.lng);
+        });
     });
 }
 
@@ -398,8 +455,8 @@ function calculateRoute(A_latlng, B_latlng, callback) {
 exports.geocodeAddress = geocodeAddress;
 exports.calculateRoute = calculateRoute;
 exports.initialize = initialize;
-exports.addMarker = addMarker;
-},{}],5:[function(require,module,exports){
+// exports.addMarker = addMarker;
+},{"./FrontendAPI":4}],6:[function(require,module,exports){
 $(function() {
     $('#contacts-button').addClass('selected');
 
@@ -410,9 +467,10 @@ $(function() {
     cart.init_header_cart();
 
     var GoogleMaps = require('../GoogleMaps');
+    GoogleMaps.initialize();
 });
 
-},{"../Cart/CartHeader":1,"../Cart/CoffeeCart":2,"../GoogleMaps":4}],6:[function(require,module,exports){
+},{"../Cart/CartHeader":1,"../Cart/CoffeeCart":2,"../GoogleMaps":5}],7:[function(require,module,exports){
 
 var ejs = require('ejs');
 
@@ -423,7 +481,7 @@ exports.Cart_OneItem = ejs.compile("<div class=\"item row\">\r\n    <img class=\
 exports.popup = ejs.compile("<div class=\"popup-message\">\r\n    <img class=\"icon\" src=\"assets/images/cart.png\">\r\n    <div class=\"text\"> <%= str %> </div>\r\n</div>");
 exports.empty_cart = ejs.compile("<div class=\"empty\">\r\n    <img src=\"assets/images/cart_empty.png\">\r\n    <h1 class=\"label-empty\">В кошику пусто</h1>\r\n    <div class=\"label-empty\">Схоже у Вас ще немає товарів у кошику</div>\r\n    <a class=\"to_menu\" href=\"/menu.html\">У меню</a>\r\n</div>");
 
-},{"ejs":9}],7:[function(require,module,exports){
+},{"ejs":10}],8:[function(require,module,exports){
 (function () {
 	// Basil
 	var Basil = function (options) {
@@ -811,9 +869,9 @@ exports.empty_cart = ejs.compile("<div class=\"empty\">\r\n    <img src=\"assets
 
 })();
 
-},{}],8:[function(require,module,exports){
-
 },{}],9:[function(require,module,exports){
+
+},{}],10:[function(require,module,exports){
 /*
  * EJS Embedded JavaScript templates
  * Copyright 2112 Matthew Eernisse (mde@fleegix.org)
@@ -1681,7 +1739,7 @@ if (typeof window != 'undefined') {
   window.ejs = exports;
 }
 
-},{"../package.json":11,"./utils":10,"fs":8,"path":12}],10:[function(require,module,exports){
+},{"../package.json":12,"./utils":11,"fs":9,"path":13}],11:[function(require,module,exports){
 /*
  * EJS Embedded JavaScript templates
  * Copyright 2112 Matthew Eernisse (mde@fleegix.org)
@@ -1847,7 +1905,7 @@ exports.cache = {
   }
 };
 
-},{}],11:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 module.exports={
   "_from": "ejs@^2.4.1",
   "_id": "ejs@2.5.7",
@@ -1928,7 +1986,7 @@ module.exports={
   "version": "2.5.7"
 }
 
-},{}],12:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 (function (process){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -2156,7 +2214,7 @@ var substr = 'ab'.substr(-1) === 'b'
 ;
 
 }).call(this,require('_process'))
-},{"_process":13}],13:[function(require,module,exports){
+},{"_process":14}],14:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 
@@ -2342,4 +2400,4 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}]},{},[5]);
+},{}]},{},[6]);
