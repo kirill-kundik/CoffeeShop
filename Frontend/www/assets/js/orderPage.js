@@ -128,15 +128,26 @@ function initialize() {
     // });
 }
 
-function addMarker(lat, lng) {
-    new google.maps.Marker({
+function addMarker(lat, lng, name) {
+    var marker = new google.maps.Marker({
         position: new google.maps.LatLng(lat, lng),
         map: map,
         icon: {
             url: "assets/images/map-icon.png",
             anchor: new google.maps.Point(30, 30)
-        }
+        },
+        title: name
     });
+
+    marker.addListener("click", function () {
+        setCenter(lat, lng);
+        $('#shop-list').val(name);
+    });
+}
+
+function setCenter(lat, lng) {
+    map.setCenter({lat:lat, lng:lng});
+    map.setZoom(15);
 }
 
 
@@ -146,7 +157,7 @@ function init_markers() {
     api.getShops(function (err, data) {
         // console.log(shops_list);
         data.forEach(function (t) {
-            addMarker(t.lat, t.lng);
+            addMarker(t.lat, t.lng, t.name);
         });
     });
 }
@@ -242,6 +253,7 @@ function calculateRoute(A_latlng, B_latlng, callback) {
 exports.geocodeAddress = geocodeAddress;
 exports.calculateRoute = calculateRoute;
 exports.initialize = initialize;
+exports.setCenter = setCenter;
 // exports.addMarker = addMarker;
 },{"./FrontendAPI":1}],3:[function(require,module,exports){
 var shops_list = [];
@@ -264,9 +276,31 @@ $(function () {
     api.getShops(function (err, data) {
         shops_list = data;
         shops_list.forEach(function (t) {
-            $shop_list.append("<option>"+t.name+"</option>");
+            var html = "<option>" + t.name + "</option>";
+            var $option = $(html);
+            $shop_list.append($option);
+        });
+
+        $shop_list.on("click", function (info) {
+            if (info.which === 0) {
+                var pos = getLanLngWithName($shop_list.val());
+                googleMap.setCenter(pos.lat, pos.lng);
+                // console.log(info);
+            }
         });
     });
+
+    function getLanLngWithName(name) {
+        var res = {};
+        shops_list.forEach(function (t) {
+            if (t.name === name) {
+                res = {lat: t.lat, lng: t.lng};
+                return;
+            }
+        });
+        return res;
+    }
+
 });
 
 
