@@ -8,6 +8,7 @@ var map;
 var center;
 var homeMarker;
 var directionsDisplay;
+var markers = [];
 
 function initialize() {
 
@@ -29,6 +30,7 @@ function initialize() {
     });
 
     init_markers();
+    google.maps.event.addListener(map, 'click', find_closest_marker);
 
     // addMarker(center.lat(), center.lng());
 
@@ -99,10 +101,12 @@ function addMarker(lat, lng, name) {
         setCenter(lat, lng);
         $('#shop-list').val(name);
     });
+
+    markers.push(marker);
 }
 
 function setCenter(lat, lng) {
-    map.setCenter({lat:lat, lng:lng});
+    map.setCenter({lat: lat, lng: lng});
     map.setZoom(15);
 }
 
@@ -179,6 +183,9 @@ function geocodeAddress(address, callback) {
 function calculateRoute(A_latlng, B_latlng, callback) {
 
     var directionsService = new google.maps.DirectionsService();
+    var directionsDisplay = new google.maps.DirectionsRenderer({ polylineOptions: { strokeColor: "#332b29" } });
+    directionsDisplay.setMap(map);
+    directionsDisplay.setOptions({ suppressMarkers: true });
 
     directionsService.route({
         origin: A_latlng,
@@ -186,7 +193,7 @@ function calculateRoute(A_latlng, B_latlng, callback) {
         travelMode: 'DRIVING'
     }, function (response, status) {
 
-        if (status == 'OK') {
+        if (status === 'OK') {
 
             var leg = response.routes[0].legs[0];
 
@@ -202,6 +209,53 @@ function calculateRoute(A_latlng, B_latlng, callback) {
 
         }
     });
+}
+
+function rad(x) {
+    return x * Math.PI / 180;
+}
+
+function find_closest_marker(event) {
+    var lat = event.latLng.lat();
+    var lng = event.latLng.lng();
+    var R = 6371; // radius of earth in km
+    var distances = [];
+    var closest = -1;
+    for (i = 0; i < markers.length; i++) {
+        var mlat = markers[i].position.lat();
+        var mlng = markers[i].position.lng();
+        var dLat = rad(mlat - lat);
+        var dLong = rad(mlng - lng);
+        var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+            Math.cos(rad(lat)) * Math.cos(rad(lat)) * Math.sin(dLong / 2) * Math.sin(dLong / 2);
+        var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        var d = R * c;
+        distances[i] = d;
+        if (closest == -1 || d < distances[closest]) {
+            closest = i;
+        }
+    }
+
+    var marker = new google.maps.Marker({
+        position: event.latLng,
+        map: map,
+        icon: {
+            url: "assets/images/home-icon.png",
+            anchor: new google.maps.Point(30, 30)
+        },
+        title: "You're here!"
+    });
+
+    calculateRoute(event.latLng, markers[closest].position, function (err, data) {
+
+        if (!err)
+            console.log("norm");
+        // $(".order-time").text(data.duration.text);
+        else
+            console.log(err);
+
+    });
+    // alert(markers[closest].title);
 }
 
 // google.maps.event.addDomListener(window, 'load', initialize);
