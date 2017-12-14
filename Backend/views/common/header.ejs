@@ -8,18 +8,26 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 
     <!-- LESS основний файл -->
-    <% if(pageName === 'main') {%>
-    <link rel="stylesheet/less" type="text/css" href="assets/less/main.less"/>
-    <% } else if(pageName === 'menu') {%>
-    <link rel="stylesheet/less" type="text/css" href="assets/less/menuMain.less"/>
+    <% if(pageName === 'main') { %>
+    <link rel="stylesheet/less" type="text/css" href="assets/less/main/main.less"/>
+    <% } else if(pageName === 'menu') { %>
+    <link rel="stylesheet/less" type="text/css" href="assets/less/menu/menuMain.less"/>
+    <% } else if(pageName === 'cart') { %>
+    <link rel="stylesheet/less" type="text/css" href="assets/less/cart/cartPageMain.less"/>
+    <% } else if(pageName === 'order') { %>
+    <link rel="stylesheet/less" type="text/css" href="assets/less/order/orderPageMain.less"/>
+    <% } else if(pageName === 'info') { %>
+    <link rel="stylesheet/less" type="text/css" href="assets/less/info/infoPageMain.less"/>
+    <% } else if(pageName === 'about') { %>
+    <link rel="stylesheet/less" type="text/css" href="assets/less/about/aboutPageMain.less"/>
     <% } %>
     <!-- LESS JavaScript компілятор -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
 
 
-    <!--<script	type="text/javascript"-->
-    <!--src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBKjwJNN6zBykLLmrYdclfBaUT99QoncGo">-->
-    <!--</script>-->
+    <!--GOOGLE MAPS -->
+    <script type="text/javascript"
+            src="http://maps.googleapis.com/maps/api/js?key=AIzaSyB-TZ12vi38BRxcnXm83S16V3nRV6X7cJM"></script>
 
     <!--<script	src="//static.liqpay.com/libjs/checkout.js"></script>-->
 
@@ -37,13 +45,14 @@
             •
             <a class="header-button link-header" id="menu-button" href="/menu.html">МЕНЮ</a>
             •
-            <a class="header-button link-header" id="contacts-button">ЗАКЛАДИ</a>
+            <a class="header-button link-header" id="contacts-button" href="/info.html">ЗАКЛАДИ</a>
             •
-            <a class="header-button link-header" id="sign-in-button">УВІЙТИ</a>
+            <a class="header-button link-header" id="about-button" href="/about.html">ПРО НАС</a>
             •
         </div>
 
-        <a class="cart-button" href="">
+        <% if(pageName !== 'cart' && pageName !== 'order') { %>
+        <a class="cart-button" href="/cart.html">
             <img class="cart-img" src="assets/images/cart.png">
             <div class="items-count"></div>
         </a>
@@ -58,9 +67,11 @@
                     <div class="sum-text">
                         Разом: 228 грн
                     </div>
-                    <a class="btn btn-default make-order">Замовити</a>
+                    <a class="btn btn-default make-order" href="\order.html">Замовити</a>
                 </div>
             </div>
         </div>
+
+        <% } %>
     </div>
 </div>

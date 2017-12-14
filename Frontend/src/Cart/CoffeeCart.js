@@ -6,8 +6,6 @@ var Templates = require('../Main/Templates');
 var cart_key = "cart_key";
 var storage = require("./storage");
 
-var $counter = $(".items-count");
-
 var sizes = {
     Big: "big_size",
     Middle: "middle_size",
@@ -17,8 +15,24 @@ var sizes = {
 var Cart = storage.get(cart_key);
 if (!Cart) Cart = [];
 
-var $cart = $("#header-cart-list");
-var $footer_cart = $(".sum");
+
+var $cart;
+var $footer_cart;
+var $counter;
+
+var cart_page;
+
+if(window.location.href.contains('cart')) {
+    cart_page = true;
+    $cart = $(".items");
+    $footer_cart = $(".sum-inner");
+    $counter = $(".counter");
+} else {
+    cart_page = false;
+    $cart = $("#header-cart-list");
+    $footer_cart = $(".sum");
+    $counter = $(".items-count");
+}
 
 function addToCart(item, size) {
 
@@ -67,7 +81,7 @@ function updateCart() {
 
         //cart_item.is_editable = !window.location.href.contains("order.html");
 
-        var html_code = Templates.Cart_OneItem(cart_item);
+        var html_code = cart_page ? Templates.Cart_OneItem(cart_item) : Templates.CartHeader_OneItem(cart_item);
         var $node = $(html_code);
 
         $node.find(".plus-amount").click(function () {
@@ -84,7 +98,22 @@ function updateCart() {
             updateCart();
         });
 
+        if(cart_page) {
+            $node.find(".delete").click(function () {
+                removeFromCart(cart_item);
+                updateCart();
+            });
+        }
+
         $cart.append($node);
+    }
+
+
+    if(cart_page) {
+        $(".clear-all").click(function () {
+            delete_all();
+            updateCart();
+        });
     }
 
     $footer_cart.find(".sum-text").text(getSum());
@@ -95,12 +124,15 @@ function updateCart() {
             $order_btn.removeClass("disabled").attr("rel", null);
         }
     } else {
-        $cart.append('<div class="label-empty">Кошик пустий</div>');
+        if(!cart_page) {
+            $cart.append('<div class="label-empty">Кошик пустий</div>');
+        }else {
+            $cart.append($(Templates.empty_cart()));
+        }
         if (!$order_btn.hasClass('disabled')) {
             $order_btn.addClass("disabled").attr("rel", "tooltip");
         }
     }
-
 
     Cart.forEach(showOneItemInCart);
     storage.set(cart_key, Cart);

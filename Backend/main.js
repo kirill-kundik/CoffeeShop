@@ -10,14 +10,22 @@ function configureEndpoints(app) {
     //Налаштування URL за якими буде відповідати сервер
     //Отримання списку піц
     app.get('/api/get-list/', api.getList);
+    app.get('/api/get-shops/', api.getShops);
     app.post('/api/create-order/', api.createOrder);
 
     //Сторінки
     //Головна сторінка
     app.get('/', pages.mainPage);
 
-    //Сторінка замовлення
     app.get('/menu.html', pages.menuPage);
+
+    app.get('/cart.html', pages.cartPage);
+
+    app.get('/order.html', pages.orderPage);
+
+    app.get('/info.html', pages.infoPage);
+
+    app.get('/about.html', pages.aboutUsPage);
 
     //Якщо не підійшов жоден url, тоді повертаємо файли з папки www
     app.use(express.static(path.join(__dirname, '../Frontend/www')));

@@ -67,7 +67,7 @@ function filter(filters, negative_filters) {
 
 function initialiseMenu() {
     $('#menu-button').addClass('selected');
-    document.getElementById('contacts-button').href = '/';
+    //document.getElementById('contacts-button').href = '/';
 
     api.getList(function (err, data) {
         Items_List = data;
@@ -81,13 +81,16 @@ function initialiseMenu() {
         filter(['Кава'], []);
     });
     $('#type3').click(function () {
-        filter(['Чай'], []);
+        filter(['Какао'], []);
     });
     $('#type4').click(function () {
-        filter([], ['Кава', 'Чай', 'Солодке']);
+        filter(['Чай'], []);
     });
     $('#type5').click(function () {
-        filter(['Солодке'], []);
+        filter([], ['Кава', 'Чай', 'Десерт', 'Какао']);
+    });
+    $('#type6').click(function () {
+        filter(['Десерт'], []);
     });
 }
 

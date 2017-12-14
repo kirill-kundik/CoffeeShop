@@ -1,0 +1,24 @@
+<% include ../common/header.ejs %>
+
+<div class="container-fluid main-container">
+    <div class="row top-row">
+        <div class="text">
+            Кошик
+            <div class="counter"></div>
+        </div>
+        <a class="clear-all">Очистити все</a>
+    </div>
+    <div class="row items"></div>
+</div>
+<div class="blank-panel"></div>
+
+<div class="sum-panel not-visible">
+    <div class="sum-inner">
+        <div class="sum-text">
+            0
+        </div>
+        <a class="btn btn-default make-order" href="\order.html">Замовити</a>
+    </div>
+</div>
+
+<% include ../common/footer.ejs %>

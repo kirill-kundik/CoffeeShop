@@ -2,6 +2,7 @@ var PUBLIC_LIQ_KEY = 'i81140805409';
 var PRIVATE_LIQ_KEY = 'MgmsisFwIvCzXm7klpJkU67rvWB3OAif4QLmtfWK';
 
 var Items_List = require('./data/Items_List');
+var Shops_List = require('./data/Shops_Location');
 var crypto = require('crypto');
 
 function sha1(string) {
@@ -16,6 +17,10 @@ function base64(str) {
 
 exports.getList = function (req, res) {
     res.send(Items_List);
+};
+
+exports.getShops = function (req, res) {
+    res.send(Shops_List);
 };
 
 exports.createOrder = function (req, res) {

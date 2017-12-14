@@ -1,0 +1,268 @@
+@import "../common/common";
+
+@sumPanelHeight: 80px;
+@sumMargin: 5px;
+
+.main-container {
+   box-sizing: border-box;
+   padding: 30px;
+   max-width: 870px;
+   min-width: 300px;
+   margin: auto;
+
+   .top-row {
+      padding-top: 100px;
+      padding-bottom: 100px;
+      position: relative;
+
+      .text {
+         display: inline-block;
+         font-size: 45px;
+         position: absolute;
+         left: 50%;
+         transform: translateX(-50%);
+         text-align: center;
+         width: 300px;
+
+         .counter {
+            position: absolute;
+            display: inline-block;
+            font-size: 18px;
+            bottom: -15px;
+
+            transform: translateX(-50%);
+            left: 50%;
+         }
+         .counter::before {
+            content: "(к-сть товарів: ";
+         }
+         .counter::after {
+            content: ")";
+         }
+      }
+
+      .clear-all {
+         display: inline;
+         position: absolute;
+         color: @colorBrown;
+         font-size: 19px;
+         text-decoration: underline;
+         cursor: pointer;
+
+         right: 0;
+         top: 50%;
+         transform: translateY(100%);
+      }
+
+      .clear-all:hover {
+         color: #8a7b7b;
+      }
+
+      .clear-all:active {
+         color: #363333
+      }
+   }
+
+   .items {
+      //margin: 0 20px 0 20px;
+
+      .item {
+         position: relative;
+         border-bottom: 1px solid @colorBrown;
+
+         .delete {
+            display: inline-block;
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            font-size: 19px;
+            cursor: pointer;
+            color: @colorBrown;
+         }
+
+         .delete:hover {
+            color: #6d6767;
+         }
+
+         .delete:active {
+            color: #a69d9d;
+         }
+
+         .item-image {
+            max-width: 100px;
+            display: inline-block;
+            margin-left: 20px;
+         }
+
+         .item-right {
+            position: absolute;
+            display: inline-block;
+            right: 20px;
+            left: 100px;
+            top: 0;
+            bottom: 0;
+
+            margin-left: 70px;
+
+            .item-info {
+               text-align: left;
+               transform: translateY(-50%);
+               position: relative;
+               top: 50%;
+
+               .item-name {
+                  font-size: 24px;
+                  font-weight: 600;
+                  line-height: 24px;
+               }
+               .item-volume {
+                  font-size: 18px;
+               }
+               .item-price {
+                  font-size: 18px;
+               }
+            }
+            .item-amount {
+               text-align: left;
+               transform: translateY(-50%);
+               position: relative;
+               top: 50%;
+
+               .btn {
+                  border-radius: 50%;
+                  padding-left: 9px;
+                  padding-right: 9px;
+                  display: inline-block;
+                  font-size: 15px;
+               }
+
+               .item-amount-text {
+                  display: inline-block;
+                  font-size: 22px;
+                  padding: 0 5px 0 5px;
+                  font-weight: 600;
+               }
+            }
+            .item-full-price {
+               text-align: right;
+               transform: translateY(-50%);
+               position: relative;
+               top: 50%;
+
+               .item-price-text {
+                  font-weight: 600;
+                  font-size: 22px;
+               }
+               .item-price {
+                  font-size: 24px;
+               }
+            }
+         }
+      }
+   }
+}
+
+.blank-panel {
+   padding-bottom: @sumPanelHeight;
+}
+
+.not-visible {
+   display: none;
+}
+
+.sum-panel {
+   position: absolute;
+   width: 100%;
+   left: 50%;
+   transform: translateX(-50%);
+   max-width: 1000px;
+   height: @sumPanelHeight;
+   bottom: 88px;
+
+   .sum-inner {
+      position: absolute;
+
+      top: @sumMargin;
+      right: @sumMargin + 30px;
+      bottom: @sumMargin;
+      left: @sumMargin + 30px;
+
+      background: white;
+      border: 2px solid @colorBrown;
+
+      .sum-text {
+         position: absolute;
+         top: 50%;
+         transform: translateY(-50%);
+         padding-left: 20px;
+
+         font-size: 24px;
+      }
+
+      .sum-text:before {
+         content: "Разом: ";
+         font-weight: 600;
+      }
+
+      .sum-text:after {
+         content: " грн";
+      }
+
+      .btn {
+         position: absolute;
+         top: 50%;
+         transform: translateY(-50%);
+         right: 20px;
+
+         font-size: 22px;
+
+         padding: 5px 35px 5px 35px;
+      }
+   }
+}
+
+.sum-panel.fixed {
+   position: fixed;
+   bottom: 0;
+   z-index: 3;
+}
+
+.empty {
+   position: relative;
+   img {
+      max-width: 256px;
+      position: absolute;
+      transform: translateX(-50%);
+      left: 50%;
+      top: -25px;
+   }
+   .label-empty {
+      text-align: center;
+      font-size: 19px;
+   }
+   h1.label-empty {
+      font-size: 30px;
+      font-weight: 600;
+      padding-top: 256px;
+   }
+
+   .to_menu {
+      display: block;
+      text-align: center;
+      font-size: 25px;
+   }
+}
+
+@media (max-width: 900px) {
+
+   .main-container .items .item .item-right {
+      margin-left: 50px;
+   }
+}
+
+@media (max-width: 750px) {
+
+   .main-container .items .item .item-right {
+      margin-left: 15px;
+   }
+}
