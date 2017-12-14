@@ -1,6 +1,3 @@
-/**
- * Created by chaika on 09.02.16.
- */
 var API_URL = "http://localhost:5050";
 
 function backendGet(url, callback) {
@@ -33,6 +30,10 @@ function backendPost(url, data, callback) {
 
 exports.getList = function (callback) {
     backendGet("/api/get-list/", callback);
+};
+
+exports.getShops = function (callback) {
+    backendGet("/api/get-shops/", callback);
 };
 
 exports.createOrder = function (order_info, callback) {

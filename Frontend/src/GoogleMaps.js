@@ -5,22 +5,20 @@
 // my key - AIzaSyB-TZ12vi38BRxcnXm83S16V3nRV6X7cJM
 
 var map;
-var pizzeria;
+var center;
 var homeMarker;
 var directionsDisplay;
 
 function initialize() {
 
-    //Тут починаємо працювати з картою
-
     directionsDisplay = new google.maps.DirectionsRenderer();
-    pizzeria = new google.maps.LatLng(50.464379, 30.519131);
+    center = new google.maps.LatLng(50.464379, 30.519131);
 
     var html_element = document.getElementById("googleMap");
 
     var mapProp = {
-        center: pizzeria,
-        zoom: 15
+        center: center,
+        zoom: 12
     };
 
     map = new google.maps.Map(html_element, mapProp);
@@ -30,14 +28,16 @@ function initialize() {
         suppressMarkers: true
     });
 
-    var marker = new google.maps.Marker({
-        position: pizzeria,
-        map: map,
-        icon: {
-            url: "assets/images/map-icon.png",
-            anchor: new google.maps.Point(30, 30)
-        }
-    });
+    // addMarker(center.lat(), center.lng());
+
+    // var marker = new google.maps.Marker({
+    //     position: center,
+    //     map: map,
+    //     icon: {
+    //         url: "assets/images/map-icon.png",
+    //         anchor: new google.maps.Point(30, 30)
+    //     }
+    // });
 
     // google.maps.event.addListener(map, 'click', function (me) {
     //
@@ -80,6 +80,17 @@ function initialize() {
     //         }
     //     });
     // });
+}
+
+function addMarker(lat, lng) {
+    new google.maps.Marker({
+        position: new google.maps.LatLng(lat, lng),
+        map: map,
+        icon: {
+            url: "assets/images/map-icon.png",
+            anchor: new google.maps.Point(30, 30)
+        }
+    });
 }
 
 function geocodeLatLng(latlng, callback) {
@@ -168,8 +179,9 @@ function calculateRoute(A_latlng, B_latlng, callback) {
     });
 }
 
-google.maps.event.addDomListener(window, 'load', initialize);
+// google.maps.event.addDomListener(window, 'load', initialize);
 
 exports.geocodeAddress = geocodeAddress;
 exports.calculateRoute = calculateRoute;
 exports.initialize = initialize;
+exports.addMarker = addMarker;

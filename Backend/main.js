@@ -10,6 +10,7 @@ function configureEndpoints(app) {
     //Налаштування URL за якими буде відповідати сервер
     //Отримання списку піц
     app.get('/api/get-list/', api.getList);
+    app.get('/api/get-shops/', api.getShops);
     app.post('/api/create-order/', api.createOrder);
 
     //Сторінки
