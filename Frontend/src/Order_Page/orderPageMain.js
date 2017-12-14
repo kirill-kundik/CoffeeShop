@@ -12,19 +12,14 @@ $(function () {
     regex.initializeRegex();
     googleMap.initialize();
 
+    var $shop_list = $('#shop-list');
+    $shop_list.text("");
+
     api.getShops(function (err, data) {
         shops_list = data;
-        // console.log(shops_list);
         shops_list.forEach(function (t) {
-            googleMap.addMarker(t.lat, t.lng);
+            $shop_list.append("<option>"+t.name+"</option>");
         });
     });
-});
-
-$(window).on("load", function () {
-
-
-    console.log(shops_list);
-
 });
 
