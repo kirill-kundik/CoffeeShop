@@ -3,18 +3,16 @@ function initLiqPay() {
     var items_in_order = "";
 
     require('../Cart/CoffeeCart').getItemsInCart().forEach(function (t) {
-        items_in_order += "- " + t.quantity + "шт. [" + (t.size === 'big_size' ? 'Велика' : 'Мала') + "] "
-            + t.item.title + ";\n";
+        items_in_order += "- " + t.quantity + "шт. " + t.item.title + " (" + t.item[t.size].price + " грн);\n";
     });
 
     var order_info = {
         amount: sum,
-        description: "test_description" +
-        // description: 'Замовлення піци: ' + $('#inputName').val() + '\n' +
-        // 'Адреса доставки: ' + $('#inputAddress').val() + '\n' +
-        // 'Телефон: ' + $('#inputPhone').val() + '\n' +
-        // items_in_order +
-        '\nРазом ' + sum + 'грн'
+        description: 'Замовлення на: ' + $('#inputName').val() + '\n' +
+        'Телефон: ' + $('#inputPhone').val() + '\n' +
+        "Назва кав'ярні: " + $('#shop-list').val() + '\n' +
+        "\n" + items_in_order +
+        '\nРазом: ' + sum + ' грн'
     };
     require('../FrontendAPI.js').createOrder(order_info, function (err, data) {
         if (!err) {

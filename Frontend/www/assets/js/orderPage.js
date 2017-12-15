@@ -180,7 +180,7 @@ exports.set = function (key, value) {
     return storage.set(key, value);
 }
 },{"basil.js":9}],3:[function(require,module,exports){
-var API_URL = "http://localhost:5050";
+var API_URL = "http://coffeeshopkma.club";
 
 function backendGet(url, callback) {
     $.ajax({
@@ -499,6 +499,7 @@ function find_closest_marker(event) {
 
 // google.maps.event.addDomListener(window, 'load', initialize);
 
+exports.geocodeLatLng = geocodeLatLng;
 exports.geocodeAddress = geocodeAddress;
 exports.calculateRoute = calculateRoute;
 exports.initialize = initialize;
@@ -521,18 +522,16 @@ function initLiqPay() {
     var items_in_order = "";
 
     require('../Cart/CoffeeCart').getItemsInCart().forEach(function (t) {
-        items_in_order += "- " + t.quantity + "шт. [" + (t.size === 'big_size' ? 'Велика' : 'Мала') + "] "
-            + t.item.title + ";\n";
+        items_in_order += "- " + t.quantity + "шт. " + t.item.title + " (" + t.item[t.size].price + " грн);\n";
     });
 
     var order_info = {
         amount: sum,
-        description: "test_description" +
-        // description: 'Замовлення піци: ' + $('#inputName').val() + '\n' +
-        // 'Адреса доставки: ' + $('#inputAddress').val() + '\n' +
-        // 'Телефон: ' + $('#inputPhone').val() + '\n' +
-        // items_in_order +
-        '\nРазом ' + sum + 'грн'
+        description: 'Замовлення на: ' + $('#inputName').val() + '\n' +
+        'Телефон: ' + $('#inputPhone').val() + '\n' +
+        "Назва кав'ярні: " + $('#shop-list').val() + '\n' +
+        "\n" + items_in_order +
+        '\nРазом: ' + sum + ' грн'
     };
     require('../FrontendAPI.js').createOrder(order_info, function (err, data) {
         if (!err) {
@@ -2087,34 +2086,29 @@ exports.cache = {
 
 },{}],13:[function(require,module,exports){
 module.exports={
-  "_args": [
-    [
-      "ejs@2.5.7",
-      "C:\\Users\\golia\\Documents\\GitHub\\CoffeeShop"
-    ]
-  ],
-  "_from": "ejs@2.5.7",
+  "_from": "ejs@^2.4.1",
   "_id": "ejs@2.5.7",
   "_inBundle": false,
   "_integrity": "sha1-zIcsFoiArjxxiXYv1f/ACJbJUYo=",
   "_location": "/ejs",
   "_phantomChildren": {},
   "_requested": {
-    "type": "version",
+    "type": "range",
     "registry": true,
-    "raw": "ejs@2.5.7",
+    "raw": "ejs@^2.4.1",
     "name": "ejs",
     "escapedName": "ejs",
-    "rawSpec": "2.5.7",
+    "rawSpec": "^2.4.1",
     "saveSpec": null,
-    "fetchSpec": "2.5.7"
+    "fetchSpec": "^2.4.1"
   },
   "_requiredBy": [
     "/"
   ],
   "_resolved": "https://registry.npmjs.org/ejs/-/ejs-2.5.7.tgz",
-  "_spec": "2.5.7",
-  "_where": "C:\\Users\\golia\\Documents\\GitHub\\CoffeeShop",
+  "_shasum": "cc872c168880ae3c7189762fd5ffc00896c9518a",
+  "_spec": "ejs@^2.4.1",
+  "_where": "C:\\Users\\Maxim\\Documents\\GitHub\\CoffeeShop",
   "author": {
     "name": "Matthew Eernisse",
     "email": "mde@fleegix.org",
@@ -2123,6 +2117,7 @@ module.exports={
   "bugs": {
     "url": "https://github.com/mde/ejs/issues"
   },
+  "bundleDependencies": false,
   "contributors": [
     {
       "name": "Timothy Gu",
@@ -2131,6 +2126,7 @@ module.exports={
     }
   ],
   "dependencies": {},
+  "deprecated": false,
   "description": "Embedded JavaScript templates",
   "devDependencies": {
     "browserify": "^13.0.1",

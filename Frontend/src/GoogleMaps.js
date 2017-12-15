@@ -274,6 +274,7 @@ function find_closest_marker(event) {
 
 // google.maps.event.addDomListener(window, 'load', initialize);
 
+exports.geocodeLatLng = geocodeLatLng;
 exports.geocodeAddress = geocodeAddress;
 exports.calculateRoute = calculateRoute;
 exports.initialize = initialize;
