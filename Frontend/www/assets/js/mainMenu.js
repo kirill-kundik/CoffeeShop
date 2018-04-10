@@ -36,7 +36,7 @@ String.prototype.contains = function (substring) {
 };
 
 var Templates = require('../Main/Templates');
-var cart_key = "cart_key";
+var cart_key = "coffee_cart_key";
 var storage = require("./storage");
 
 var sizes = {
@@ -212,7 +212,7 @@ exports.set = function (key, value) {
     return storage.set(key, value);
 }
 },{"basil.js":9}],4:[function(require,module,exports){
-var API_URL = "http://localhost:5050";
+var API_URL = "http://coffeeshopkma.club";
 
 function backendGet(url, callback) {
     $.ajax({

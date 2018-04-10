@@ -8,4 +8,5 @@ $(function() {
     cart.init_header_cart();
 
     var GoogleMaps = require('../GoogleMaps');
+    GoogleMaps.initialize();
 });

@@ -8,23 +8,48 @@ $(function () {
     var regex = require('./regex');
     var api = require('../FrontendAPI');
     var googleMap = require('../GoogleMaps');
+    var liqPay = require('./LiqPay');
 
     regex.initializeRegex();
     googleMap.initialize();
+    $('#order-next').click(function () {
+        if (regex.validateName() && regex.validatePhone()) {
+            liqPay.initLiqPay();
+        }
+    });
+
+
+
+    var $shop_list = $('#shop-list');
+    $shop_list.text("");
 
     api.getShops(function (err, data) {
         shops_list = data;
-        // console.log(shops_list);
         shops_list.forEach(function (t) {
-            googleMap.addMarker(t.lat, t.lng);
+            var html = "<option>" + t.name + "</option>";
+            var $option = $(html);
+            $shop_list.append($option);
+        });
+
+        $shop_list.on("click", function (info) {
+            if (info.which === 0) {
+                var pos = getLanLngWithName($shop_list.val());
+                googleMap.setCenter(pos.lat, pos.lng);
+                // console.log(info);
+            }
         });
     });
-});
 
-$(window).on("load", function () {
-
-
-    console.log(shops_list);
+    function getLanLngWithName(name) {
+        var res = {};
+        shops_list.forEach(function (t) {
+            if (t.name === name) {
+                res = {lat: t.lat, lng: t.lng};
+                return;
+            }
+        });
+        return res;
+    }
 
 });
 
