@@ -1,2 +1,3 @@
 var main = require('./Backend/main');
-main.startServer(80);
+const PORT = process.env.PORT || 5000;
+main.startServer(PORT);
