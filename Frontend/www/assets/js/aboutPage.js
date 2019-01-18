@@ -216,11 +216,11 @@ exports.set = function (key, value) {
 var ejs = require('ejs');
 
 
-exports.Menu_OneItem = ejs.compile("<div class=\"outer col-lg-4 col-sm-6 col-xs-12\">\r\n    <div class=\"menu-item\">\r\n        <img class=\"item-image\" src=<%= item.icon %>>\r\n        <div class=\"info\">\r\n            <div class=\"black-background\"></div>\r\n            <div class=\"info-background\"></div>\r\n            <div class=\"title\"><%= item.title %></div>\r\n\r\n            <div class=\"items-kinds\">\r\n                <% if('small_size' in item) { %>\r\n                <div class=\"category\">\r\n                    <div class=\"size\">\r\n                        Маленький:\r\n                        <div class=\"volume\"><%= item.small_size.volume %>\r\n                            <%= item.notLiquid ? \" г\" : \" мл\" %></div>\r\n                    </div>\r\n                    <div class=\"price\"><%= item.small_size.price %> грн</div>\r\n                    <a class=\"btn btn-default add-small\">\r\n                        <span class=\"glyphicon glyphicon-plus\"></span>\r\n                    </a>\r\n                </div>\r\n                <% } if('middle_size' in item) { %>\r\n                <div class=\"category\">\r\n                    <div class=\"size\">\r\n                        Середній:\r\n                        <div class=\"volume\"><%= item.middle_size.volume %>\r\n                            <%= item.notLiquid ? \" г\" : \" мл\" %></div>\r\n                    </div>\r\n                    <div class=\"price\"><%= item.middle_size.price %> грн</div>\r\n                    <a class=\"btn btn-default add-middle\">\r\n                        <span class=\"glyphicon glyphicon-plus\"></span>\r\n                    </a>\r\n                </div>\r\n                <% } if('big_size' in item) { %>\r\n                <div class=\"category\">\r\n                    <div class=\"size\">\r\n                        Великий:\r\n                        <div class=\"volume\"><%= item.big_size.volume %>\r\n                            <%= item.notLiquid ? \" г\" : \" мл\" %></div>\r\n                    </div>\r\n                    <div class=\"price\"><%= item.big_size.price %> грн</div>\r\n                    <a class=\"btn btn-default add-big\">\r\n                        <span class=\"glyphicon glyphicon-plus\"></span>\r\n                    </a>\r\n                </div>\r\n                <% } %>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>");
-exports.CartHeader_OneItem = ejs.compile("<div class=\"cart-item container-fluid\">\r\n    <div class=\"col-xs-4 image-column\">\r\n        <img class=\"cart-img\" src=<%= item.icon %> >\r\n    </div>\r\n\r\n    <div class=\"col-xs-4 info-column\">\r\n        <div class=\"item-title\"><%= item.title %></div>\r\n        <div class=\"price\"><%= item[size].price %> грн</div>\r\n        <div class=\"volume\"><%= item[size].volume %> <%= item.notLiquid ? \" г\" : \" мл\" %> </div>\r\n    </div>\r\n\r\n    <div class=\"col-xs-4 count-column\">\r\n        <div class=\"plus-amount change-amount\">\r\n            <span class=\"glyphicon glyphicon-chevron-up\"></span>\r\n        </div>\r\n        <div class=\"amount\"><%= quantity %></div>\r\n        <div class=\"minus-amount change-amount\">\r\n            <span class=\"glyphicon glyphicon-chevron-down\"></span>\r\n        </div>\r\n    </div>\r\n</div>");
-exports.Cart_OneItem = ejs.compile("<div class=\"item row\">\r\n    <img class=\"item-image\" src=<%= item.icon %>>\r\n    <div class=\"item-right\">\r\n        <div class=\"item-info col-xs-5\">\r\n            <div class=\"item-name\"><%= item.title %></div>\r\n            <div class=\"item-volume\"><%= item[size].volume %><%= item.notLiquid ? \" г\" : \" мл\" %></div>\r\n            <div class=\"item-price\"><%= item[size].price %> грн</div>\r\n        </div>\r\n        <div class=\"item-amount col-xs-4\">\r\n            <a class=\"btn btn-default minus-amount\">\r\n                <span class=\"glyphicon glyphicon-minus\"></span>\r\n            </a>\r\n            <div class=\"item-amount-text\"><%= quantity %></div>\r\n            <a class=\"btn btn-default plus-amount\">\r\n                <span class=\"glyphicon glyphicon-plus\"></span>\r\n            </a>\r\n        </div>\r\n        <div class=\"item-full-price col-xs-3\">\r\n            <div class=\"item-price-text\">Сума</div>\r\n            <div class=\"item-price\"><%= item[size].price*quantity %> грн</div>\r\n        </div>\r\n    </div>\r\n    <a class=\"delete link-header\"><span class=\"glyphicon glyphicon-remove\"></span></a>\r\n</div>");
-exports.popup = ejs.compile("<div class=\"popup-message\">\r\n    <img class=\"icon\" src=\"assets/images/cart.png\">\r\n    <div class=\"text\"> <%= str %> </div>\r\n</div>");
-exports.empty_cart = ejs.compile("<div class=\"empty\">\r\n    <img src=\"assets/images/cart_empty.png\">\r\n    <h1 class=\"label-empty\">В кошику пусто</h1>\r\n    <div class=\"label-empty\">Схоже у Вас ще немає товарів у кошику</div>\r\n    <a class=\"to_menu\" href=\"/menu.html\">У меню</a>\r\n</div>");
+exports.Menu_OneItem = ejs.compile("<div class=\"outer col-lg-4 col-sm-6 col-xs-12\">\n    <div class=\"menu-item\">\n        <img class=\"item-image\" src=<%= item.icon %>>\n        <div class=\"info\">\n            <div class=\"black-background\"></div>\n            <div class=\"info-background\"></div>\n            <div class=\"title\"><%= item.title %></div>\n\n            <div class=\"items-kinds\">\n                <% if('small_size' in item) { %>\n                <div class=\"category\">\n                    <div class=\"size\">\n                        Маленький:\n                        <div class=\"volume\"><%= item.small_size.volume %>\n                            <%= item.notLiquid ? \" г\" : \" мл\" %></div>\n                    </div>\n                    <div class=\"price\"><%= item.small_size.price %> грн</div>\n                    <a class=\"btn btn-default add-small\">\n                        <span class=\"glyphicon glyphicon-plus\"></span>\n                    </a>\n                </div>\n                <% } if('middle_size' in item) { %>\n                <div class=\"category\">\n                    <div class=\"size\">\n                        Середній:\n                        <div class=\"volume\"><%= item.middle_size.volume %>\n                            <%= item.notLiquid ? \" г\" : \" мл\" %></div>\n                    </div>\n                    <div class=\"price\"><%= item.middle_size.price %> грн</div>\n                    <a class=\"btn btn-default add-middle\">\n                        <span class=\"glyphicon glyphicon-plus\"></span>\n                    </a>\n                </div>\n                <% } if('big_size' in item) { %>\n                <div class=\"category\">\n                    <div class=\"size\">\n                        Великий:\n                        <div class=\"volume\"><%= item.big_size.volume %>\n                            <%= item.notLiquid ? \" г\" : \" мл\" %></div>\n                    </div>\n                    <div class=\"price\"><%= item.big_size.price %> грн</div>\n                    <a class=\"btn btn-default add-big\">\n                        <span class=\"glyphicon glyphicon-plus\"></span>\n                    </a>\n                </div>\n                <% } %>\n            </div>\n        </div>\n    </div>\n</div>");
+exports.CartHeader_OneItem = ejs.compile("<div class=\"cart-item container-fluid\">\n    <div class=\"col-xs-4 image-column\">\n        <img class=\"cart-img\" src=<%= item.icon %> >\n    </div>\n\n    <div class=\"col-xs-4 info-column\">\n        <div class=\"item-title\"><%= item.title %></div>\n        <div class=\"price\"><%= item[size].price %> грн</div>\n        <div class=\"volume\"><%= item[size].volume %> <%= item.notLiquid ? \" г\" : \" мл\" %> </div>\n    </div>\n\n    <div class=\"col-xs-4 count-column\">\n        <div class=\"plus-amount change-amount\">\n            <span class=\"glyphicon glyphicon-chevron-up\"></span>\n        </div>\n        <div class=\"amount\"><%= quantity %></div>\n        <div class=\"minus-amount change-amount\">\n            <span class=\"glyphicon glyphicon-chevron-down\"></span>\n        </div>\n    </div>\n</div>");
+exports.Cart_OneItem = ejs.compile("<div class=\"item row\">\n    <img class=\"item-image\" src=<%= item.icon %>>\n    <div class=\"item-right\">\n        <div class=\"item-info col-xs-5\">\n            <div class=\"item-name\"><%= item.title %></div>\n            <div class=\"item-volume\"><%= item[size].volume %><%= item.notLiquid ? \" г\" : \" мл\" %></div>\n            <div class=\"item-price\"><%= item[size].price %> грн</div>\n        </div>\n        <div class=\"item-amount col-xs-4\">\n            <a class=\"btn btn-default minus-amount\">\n                <span class=\"glyphicon glyphicon-minus\"></span>\n            </a>\n            <div class=\"item-amount-text\"><%= quantity %></div>\n            <a class=\"btn btn-default plus-amount\">\n                <span class=\"glyphicon glyphicon-plus\"></span>\n            </a>\n        </div>\n        <div class=\"item-full-price col-xs-3\">\n            <div class=\"item-price-text\">Сума</div>\n            <div class=\"item-price\"><%= item[size].price*quantity %> грн</div>\n        </div>\n    </div>\n    <a class=\"delete link-header\"><span class=\"glyphicon glyphicon-remove\"></span></a>\n</div>");
+exports.popup = ejs.compile("<div class=\"popup-message\">\n    <img class=\"icon\" src=\"assets/images/cart.png\">\n    <div class=\"text\"> <%= str %> </div>\n</div>");
+exports.empty_cart = ejs.compile("<div class=\"empty\">\n    <img src=\"assets/images/cart_empty.png\">\n    <h1 class=\"label-empty\">В кошику пусто</h1>\n    <div class=\"label-empty\">Схоже у Вас ще немає товарів у кошику</div>\n    <a class=\"to_menu\" href=\"/menu.html\">У меню</a>\n</div>");
 
 },{"ejs":8}],5:[function(require,module,exports){
 $(function () {
@@ -1659,29 +1659,34 @@ exports.cache = {
 
 },{}],10:[function(require,module,exports){
 module.exports={
-  "_from": "ejs@^2.4.1",
+  "_args": [
+    [
+      "ejs@2.5.7",
+      "/Users/kyrylo_kundik/WebstormProjects/CoffeeShop"
+    ]
+  ],
+  "_from": "ejs@2.5.7",
   "_id": "ejs@2.5.7",
   "_inBundle": false,
   "_integrity": "sha1-zIcsFoiArjxxiXYv1f/ACJbJUYo=",
   "_location": "/ejs",
   "_phantomChildren": {},
   "_requested": {
-    "type": "range",
+    "type": "version",
     "registry": true,
-    "raw": "ejs@^2.4.1",
+    "raw": "ejs@2.5.7",
     "name": "ejs",
     "escapedName": "ejs",
-    "rawSpec": "^2.4.1",
+    "rawSpec": "2.5.7",
     "saveSpec": null,
-    "fetchSpec": "^2.4.1"
+    "fetchSpec": "2.5.7"
   },
   "_requiredBy": [
     "/"
   ],
   "_resolved": "https://registry.npmjs.org/ejs/-/ejs-2.5.7.tgz",
-  "_shasum": "cc872c168880ae3c7189762fd5ffc00896c9518a",
-  "_spec": "ejs@^2.4.1",
-  "_where": "C:\\Users\\Maxim\\Documents\\GitHub\\CoffeeShop",
+  "_spec": "2.5.7",
+  "_where": "/Users/kyrylo_kundik/WebstormProjects/CoffeeShop",
   "author": {
     "name": "Matthew Eernisse",
     "email": "mde@fleegix.org",
@@ -1690,7 +1695,6 @@ module.exports={
   "bugs": {
     "url": "https://github.com/mde/ejs/issues"
   },
-  "bundleDependencies": false,
   "contributors": [
     {
       "name": "Timothy Gu",
@@ -1699,7 +1703,6 @@ module.exports={
     }
   ],
   "dependencies": {},
-  "deprecated": false,
   "description": "Embedded JavaScript templates",
   "devDependencies": {
     "browserify": "^13.0.1",

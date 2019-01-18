@@ -1,4 +1,4 @@
-var API_URL = "http://coffeeshopkma.club";
+var API_URL = window.location;
 
 function backendGet(url, callback) {
     $.ajax({
