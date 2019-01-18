@@ -1,4 +1,4 @@
-var API_URL = window.location;
+var API_URL = '';
 
 function backendGet(url, callback) {
     $.ajax({

@@ -212,7 +212,7 @@ exports.set = function (key, value) {
     return storage.set(key, value);
 }
 },{"basil.js":9}],4:[function(require,module,exports){
-var API_URL = window.location;
+var API_URL = '';
 
 function backendGet(url, callback) {
     $.ajax({
